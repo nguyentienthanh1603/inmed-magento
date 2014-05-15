@@ -1,0 +1,24 @@
+# composer
+composer.json
+
+# directories
+downloader
+vendor
+sql
+
+# install files
+install.php
+PATCH_*
+*.txt
+
+# image cache
+media/catalog/product/cache
+media/wysiwyg/.thumbs
+
+# connection strings
+app/etc/local.xml
+app/etc/production_local.xml
+app/etc/development_local.xml
+
+# wordpress
+wordpress/wp-config.php
