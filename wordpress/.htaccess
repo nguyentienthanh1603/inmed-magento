@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /blog/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#RewriteRule ^im-listening/contributors/hollie-alford/?$  author/samuel-goodwin [NC,L]
+
+RewriteRule . /blog/index.php [L]
+</IfModule>
