@@ -1,0 +1,60 @@
+
+.badge {
+  .round(12px);
+  min-width: 20px;
+  text-align: center;
+  display: inline-block;
+  font-size: 11px;
+
+  &.badge-blue {
+    background-color: @blue;
+    color: @white;
+  }
+  &.badge-gray {
+    background-color: @gray3;
+    color: @white;
+  }
+}
+
+body {
+  background-color: @backgroundColor;
+  background-image: url('../../images/bg.png');
+}
+
+a {
+  color: @blue;
+}
+
+.reply {
+  display: none;
+}
+
+form {
+
+  .fields, .wide, .control {
+    padding: 0;
+    margin: 0 5px 5px;
+    .field {
+      padding: 0 5px 0 0 ;
+      label, label.required {
+        font-family: @fontPTSans;
+        //    font-weight: normal;
+        color: @gray4;
+      }
+      .input-text {
+        //  line-height: 10px !important;
+        border-radius: 0px;
+        padding: 0 0 0 5px;
+        line-height: 26px;
+        height: 32px;
+        font-size: 13px;
+
+        &:focus {
+          //      .form-control-focus( @white);
+          //      border: 1px solid @blue;
+        }
+      }
+    }
+  }
+
+}

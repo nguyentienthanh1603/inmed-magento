@@ -1,0 +1,33 @@
+<?php
+/**
+ * @category    Bubble
+ * @package     Bubble_CmsTree
+ * @version     1.2.6
+ * @copyright   Copyright (c) 2014 BubbleCode (http://www.bubbleshop.net)
+ */
+?>
+<div class="main-col-inner">
+    <div class="<?php echo $this->getContainerCssClass() ?>">
+        <div id="messages"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+
+        <?php echo $this->getChildHtml('content') ?>
+    </div>
+    <div id="messages"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+</div>
+<?php echo $this->getChildHtml('js') ?>
+<script type="text/javascript">
+//<![CDATA[
+    <?php if (Mage::getStoreConfig('cms/wysiwyg/enabled') == Mage_Cms_Model_Wysiwyg_Config::WYSIWYG_ENABLED): ?>
+        $('togglepage_content').click();
+    <?php endif; ?>
+
+    $('page_tabs_main_section').show();
+
+    <?php if ($tab = $this->getRequest()->getParam('tab')): ?>
+        var tab = '<?php echo $tab ?>';
+        if ($(tab)) {
+            $(tab).click();
+        }
+    <?php endif; ?>
+//]]>
+</script>

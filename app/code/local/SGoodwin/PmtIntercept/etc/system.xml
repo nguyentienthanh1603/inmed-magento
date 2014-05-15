@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <sections>
+        <customer translate="label" module="customer">
+            <groups>
+                <pmtintercept translate="label" module="pmtintercept">
+                    <label>PMT Intercept Emails</label>
+                    <sort_order>768</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+
+                        <new_account_general_template translate="label" module="pmtintercept">
+                            <label>PMT General Account</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <!--<depends>-->
+                            <!--<alert_admin>1</alert_admin>-->
+                            <!--<disable_ext>0</disable_ext>-->
+                            <!--</depends>-->
+                        </new_account_general_template>
+
+                        <new_account_clinician_template translate="label" module="pmtintercept">
+                            <label>PMT Clinician Account</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <!--<depends>-->
+                            <!--<alert_admin>1</alert_admin>-->
+                            <!--<disable_ext>0</disable_ext>-->
+                            <!--</depends>-->
+                        </new_account_clinician_template>
+
+                        <new_account_clinician_credit_template translate="label" module="pmtintercept">
+                            <label>PMT Clinician Account with Credit</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <!--<depends>-->
+                                <!--<alert_admin>1</alert_admin>-->
+                                <!--<disable_ext>0</disable_ext>-->
+                            <!--</depends>-->
+                        </new_account_clinician_credit_template>
+
+                        <admin_error_template translate="label" module="pmtintercept">
+                            <label>Admin Error Template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <!--<depends>-->
+                            <!--<alert_admin>1</alert_admin>-->
+                            <!--<disable_ext>0</disable_ext>-->
+                            <!--</depends>-->
+                        </admin_error_template>
+
+                        <admin_customer_clinician_submission_template translate="label" module="pmtintercept">
+                            <label>Customer Clinician Submission</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <!--<depends>-->
+                            <!--<alert_admin>1</alert_admin>-->
+                            <!--<disable_ext>0</disable_ext>-->
+                            <!--</depends>-->
+                        </admin_customer_clinician_submission_template>
+
+                        <admin_pmt_error_template translate="label" module="pmtintercept">
+                            <label>PMT Errors</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <!--<depends>-->
+                            <!--<alert_admin>1</alert_admin>-->
+                            <!--<disable_ext>0</disable_ext>-->
+                            <!--</depends>-->
+                        </admin_pmt_error_template>
+
+                        <admin_new_account_template translate="label" module="pmtintercept">
+                            <label>Admin New Account</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <!--<depends>-->
+                            <!--<alert_admin>1</alert_admin>-->
+                            <!--<disable_ext>0</disable_ext>-->
+                            <!--</depends>-->
+                        </admin_new_account_template>
+
+
+
+                    </fields>
+                </pmtintercept>
+            </groups>
+        </customer>
+    </sections>
+</config>

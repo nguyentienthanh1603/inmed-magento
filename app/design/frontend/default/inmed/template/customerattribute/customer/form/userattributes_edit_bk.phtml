@@ -1,0 +1,72 @@
+<?php /**
+ * Create account form template */
+/* @var $this Magestore_Customerattribute_Block_Customer_Form */
+?>
+<div class="additional-attributes">
+<?php
+if ($this->hasUserDefinedAttributes())
+{
+	$countAttribute=1;
+
+	$groups = ['linician' => 'Clinician Information', 'onsumer' => 'Consumer Information'];
+
+	foreach ( $groups AS $code => $label )
+	{
+		?>
+		<div class="fieldset">
+			<h2 class="legend"><?php echo $label ?></h2>
+			<ul class="form-list">
+		<?php
+
+		foreach ($this->getUserDefinedAttributes() as $attribute)
+		{
+			echo $attribute->getAttributeCode() . ' - ' . strpos($attribute->getAttributeCode(),$code) . "<br />";
+			if ( strpos($attribute->getAttributeCode(),$code) == 1 )
+			{
+
+				$frontendInput=$attribute->getFrontendInput();
+
+//				var_dump($attribute->getAttributeCode() );
+//				exit();
+
+				$attributeContent = $this->getAttributeHtml($attribute);
+
+				if ($attributeContent)
+				{
+
+					if(($frontendInput=='image')||($frontendInput=='file')
+						||($frontendInput=='multiselect')||($frontendInput=='textarea')||($countAttribute==1))
+					{
+						?>
+						<li class="fields">
+						<?php
+					}
+
+					echo $attributeContent;
+
+					if(($frontendInput=='image')||($frontendInput=='file')
+						||($frontendInput=='multiselect')||($frontendInput=='textarea')||($countAttribute==2))
+					{
+						?>
+						</li>
+						<?php
+						$countAttribute=1;
+					}
+					else {
+						$countAttribute++;
+					}
+				}
+			} // end get all attributes for a set
+		} // end attribute loop
+		if($this->isShowFieldSet())
+		{
+			?>
+				</ul>
+			</div>
+			<?php
+		}
+	} // end groupings foreach
+}
+?>
+
+</div>

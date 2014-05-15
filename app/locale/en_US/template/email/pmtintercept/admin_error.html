@@ -1,0 +1,19 @@
+<div>
+    <h3>{{config path='general/store_information/name'}}</h3>
+    <h2>{{var message}}</h2>
+    <p>Importance: {{var level}}</p>
+    <p>Consumer details:<br />
+        Name: {{var customer.firstname }} {{var customer.lastname }}<br />
+        Email: {{var customer.email }}<br />
+        Date/Time: {{var date_time}}
+    </p>
+    <p>&nbsp</p>
+    <p>Details:<br />
+        Message: {{var message}}<br />
+        exception: {{var exception}}<br />
+    </p>
+    <p>&nbsp</p>
+    <p>Passed data:
+        {{var data}}
+    </p>
+</div>

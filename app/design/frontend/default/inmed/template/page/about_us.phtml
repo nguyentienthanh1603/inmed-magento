@@ -1,0 +1,144 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<!DOCTYPE html>
+<head>
+    <?php echo $this->getChildHtml('head') ?>
+</head>
+<body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
+
+    <?php echo $this->getChildHtml('after_body_start') ?>
+    <?php echo $this->getChildHtml('header') ?>
+	<?php echo $this->getChildHtml('breadcrumbs') ?>
+    <div class="container">
+        <?php echo $this->getChildHtml('global_notices') ?>
+
+
+        <div class="layout layout-2-cols">
+
+            <div role="main">
+                <?php echo $this->getChildHtml('global_messages') ?>
+<!--				<div class="col-md-12">-->
+				<div class="col-md-12 about-us">
+					<div class="box-account box-account-top-margin">
+						<h3 class="float-left">About InMed Technologies</h3>
+						<div class="box-content">
+<!--                	--><?php echo $this->getChildHtml('content') ?>
+<!--				</div>-->
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6 about-us-our-company">
+					<div class="box-account box-account-padding box-account-top-margin">
+						<h3 class="float-left">Our Company</h3>
+						<div class="box-content">
+							<?php
+							$block = Mage::app()->getLayout()
+								->createBlock('cms/block')
+								->setBlockId('about-us-our-company'); //retrieve the cms block with the id set on this layout block
+							$html = $block->toHtml();//in this var you have the content of the cms block
+
+							echo $html;
+							?>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6 about-us-scientific-team clearfix">
+					<div class="box-account box-account-padding box-account-top-margin">
+						<h3 class="float-left">Scientific Team</h3>
+						<div class="box-content">
+						<?php
+						$block = Mage::app()->getLayout()
+							->createBlock('cms/block')
+							->setBlockId('about-us-scientific-team'); //retrieve the cms block with the id set on this layout block
+						$html = $block->toHtml();//in this var you have the content of the cms block
+
+						echo $html;
+						?>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-12"></div>
+
+				<div class="col-md-6 about-us-company-culture">
+					<div class="box-account box-account-padding box-account-top-margin">
+						<h3 class="float-left">Company Culture</h3>
+						<div class="box-content">
+							<?php
+							$block = Mage::app()->getLayout()
+								->createBlock('cms/block')
+								->setBlockId('about-us-company-culture'); //retrieve the cms block with the id set on this layout block
+							$html = $block->toHtml();//in this var you have the content of the cms block
+
+							echo $html;
+							?>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6 about-us-management-team">
+					<div class="box-account box-account-padding box-account-top-margin">
+						<h3 class="float-left">Our Company</h3>
+						<div class="box-content">
+
+							<?php
+							$block = Mage::app()->getLayout()
+								->createBlock('cms/block')
+								->setBlockId('about-us-management-team'); //retrieve the cms block with the id set on this layout block
+							$html = $block->toHtml();//in this var you have the content of the cms block
+
+							echo $html;
+							?>
+						</div>
+					</div>
+
+				</div>
+
+
+            </div>
+			<aside role="complementary">
+				<?php echo $this->getChildHtml('right') ?>
+
+
+
+			</aside>
+        </div>
+    </div>
+
+    <?php echo $this->getChildHtml('footer') ?>
+    <?php echo $this->getChildHtml('before_body_end') ?>
+    <?php echo $this->getAbsoluteFooter() ?>
+
+</body>
+</html>

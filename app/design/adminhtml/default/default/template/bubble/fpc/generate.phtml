@@ -1,0 +1,100 @@
+<?php
+/**
+ * @category    Bubble
+ * @package     Bubble_FPC
+ * @version     1.2.18
+ * @copyright   Copyright (c) 2014 BubbleCode (http://www.bubbleshop.net)
+ */
+
+/**
+ * @var $this Bubble_FPC_Block_Adminhtml_Generate
+ */
+$_urls = $this->getUrls();
+?>
+<div class="content-header">
+    <h3>
+        <?php echo $this->__('Generating cache for store: %s (%s)', $this->getStore()->getName(), $this->getStore()->getCode()) ?>
+        <?php if (count($_urls)): ?>
+            <button id="btn-pause" type="button" title="<?php echo $this->escapeHtml($this->__('Pause')) ?>">
+                <span><span><span id="btn-pause-label"><?php echo $this->__('Pause') ?></span></span></span>
+            </button>
+        <?php endif; ?>
+    </h3>
+</div>
+
+<?php if (!count($_urls)): ?>
+    <h4><?php echo $this->__('No URL found') ?></h4>
+<?php else: ?>
+    <h4 id="generate-progress" style="display: none;"><?php echo $this->__('%s of %s', '<span id="generate-offset"></span>', '<span id="generate-count"></span>') ?></h4>
+    <div id="calls" style="max-height: 400px; border: 1px solid #d6d6d6; background: #fafafa; padding: 10px 15px 5px; overflow: scroll;"></div>
+    <script type="text/javascript">
+    //<![CDATA[
+        document.observe('dom:loaded', function () {
+            $('loading-mask').remove();
+        });
+
+        var run = true;
+        var generateUrl = '<?php echo $this->getGenerateUrl() ?>';
+        var store = '<?php echo $this->getStore()->getCode() ?>';
+        var urls = '<?php echo $this->helper('core')->jsonEncode($this->getUrls()) ?>'.evalJSON();
+        var interval = null;
+        var start = 0;
+        var end = 0;
+
+        if ($('btn-pause')) {
+            $('btn-pause').observe('click', function(e) {
+                run = !run;
+                var label = run ?
+                    '<?php echo $this->escapeHtml($this->__('Pause')) ?>' :
+                    '<?php echo $this->escapeHtml($this->__('Resume')) ?>';
+                $('btn-pause-label').innerHTML = label;
+                $('btn-pause').title = label;
+            });
+        }
+
+        function processUrl(i) {
+            if (!run) {
+                setTimeout(function() {
+                    processUrl(i);
+                }, 500);
+            } else if (urls[i] && urls[i].length) {
+                $('generate-progress').show();
+                $('generate-offset').innerHTML = i + 1;
+                $('generate-count').innerHTML = urls.length;
+                new Ajax.Request(generateUrl + '?store=' + store + '&url=' + encodeURIComponent(urls[i]), {
+                    onCreate: function() {
+                        start = new Date().getTime();
+                        $('calls').insert({
+                            top: '<p id="generate-' + i + '"><a href="' + urls[i] + '" target="_blank">' + urls[i] + '</a>&nbsp;</p>'
+                        });
+                        interval = setInterval(function() {
+                            $('generate-' + i).insert({ bottom: '.' });
+                        }, 200);
+                    },
+                    onSuccess: function(response) {
+                        var result = response.responseJSON;
+                        var color = result.http_code == 200 ? 'green' : 'red';
+                        var took = (Math.round(result.total_time * 1000) / 1000);
+                        $('generate-' + i).insert({
+                            bottom: '<strong style="color:'+ color +';"> ' + result.http_code + '</strong> <em>(' + took.toFixed(3) + 's)</em>'
+                        });
+                    },
+                    onFailure: function() {
+                        $('generate-' + i).insert({
+                            bottom: '<strong style="color: red;">&nbsp;<?php echo $this->__('ERROR') ?></strong>'
+                        });
+                    },
+                    onComplete: function() {
+                        clearInterval(interval);
+                        setTimeout(function() {
+                            processUrl(++i);
+                        }, 200);
+                    }
+                });
+            }
+        }
+
+        processUrl(0);
+    //]]>
+    </script>
+<?php endif; ?>

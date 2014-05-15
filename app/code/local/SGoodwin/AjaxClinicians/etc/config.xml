@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SGoodwin_AjaxClinicians>
+            <version>0.1.0</version>
+        </SGoodwin_AjaxClinicians>
+    </modules>
+
+    <frontend>
+        <routers>
+            <ajaxclinicians>
+                <use>standard</use>
+                <args>
+                    <module>SGoodwin_AjaxClinicians</module>
+                    <frontName>ajaxclinicians</frontName>
+                </args>
+            </ajaxclinicians>
+        </routers>
+        <layout>
+            <updates>
+                <ajaxclinicians>
+                    <file>ajaxclinicians.xml</file>
+                </ajaxclinicians>
+            </updates>
+        </layout>
+    </frontend>
+
+
+</config>

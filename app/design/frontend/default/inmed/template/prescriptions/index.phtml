@@ -1,0 +1,102 @@
+
+<div class="box-account box-account-padding box-account-top-margin ">
+
+		<h3 class="float-left">Your Prescriptions</h3>
+	<div class="box-content">
+	</div>
+</div>
+<?php
+//var_dump($data);
+if ( count($data) )
+{
+	?>
+	<div class="panel-group" id="accordion">
+	<?php
+
+	foreach ($data as $prescriptions)
+	{
+
+
+		foreach ( $prescriptions AS $prescription => $value)
+		{
+
+		?>
+
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $value->prescription->id; ?>">
+							<?php echo $value->prescription->product_title; ?>&nbsp;-&nbsp;
+							<?php echo preg_replace('/(\.?)0+$/', '', $value->prescription->product_size); ?>
+							<?php echo $value->prescription->product_descriptor; ?>
+						</a>
+					</h4>
+				</div>
+				<div id="collapse<?php echo $value->prescription->id; ?>" class="panel-collapse collapse">
+					<div class="panel-body">
+						<p>
+							<strong>Dosage:</strong> <?php echo $value->prescription->dosage; ?> <?php echo $value->prescription->product_descriptor; ?><br />
+							<strong>Frequency:</strong> <?php echo $value->prescription->frequency; ?><br />
+							<strong>Repeats:</strong> <?php echo $value->prescription->repeats; ?><br />
+							<?php
+							if ( $value->prescription->notes )
+							{
+							?>
+							<strong>Notes:</strong> <?php echo $value->prescription->notes; ?><br />
+							<?php
+							}
+							?>
+
+						</p>
+						<table class="table table-striped">
+							<thead>
+							<tr>
+								<th>Repeat #</th>
+								<th>Start Date</th>
+								<th>Complete Date</th>
+								<th>Calendar Reminder</th>
+							</tr>
+							</thead>
+							<tbody>
+						<?php
+
+						$repeatCnt = 1;
+						foreach ( $value->repeats AS $repeat )
+						{
+							?>
+							<tr>
+								<td><?php echo $repeatCnt; ?></td>
+								<td><?php echo date('jS M Y', $repeat->start_date_timestamp); ?></td>
+								<td><?php echo date('jS M Y', $repeat->complete_date_timestamp); ?></td>
+								<td><a href="<?php echo Mage::getBaseUrl() . 'prescriptions/index/ics/id/' .$repeat->id;?>"  class="ics-id" >Download</a></td>
+							</tr>
+							<?php
+							$repeatCnt++;
+						}
+
+						?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		<?php
+		}
+
+	}
+	?>
+	</div>
+	<?php
+}
+else
+{
+	?>
+	<div class="alert alert-info">Currently, you have no prescriptions.</div>
+	<?php
+}
+
+
+//Mage::getBaseUrl()
+?>

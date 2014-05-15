@@ -1,0 +1,12 @@
+<?xml version="1.0"?>   
+<layout version="0.1.0">   
+  <ingredientsearch_index_index>   
+    <reference name="root">   
+      <action method="setTemplate"><template>page/ingredients.phtml</template></action>
+    </reference>   
+    <reference name="content">   
+      <block type="ingredientsearch/index" name="ingredientsearch_index" template="ingredientsearch/index.phtml"/>   
+    </reference>   
+  </ingredientsearch_index_index>   
+</layout>   
+	

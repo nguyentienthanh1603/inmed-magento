@@ -1,0 +1,171 @@
+
+#search_mini_form {
+//  padding-top: 7px;
+  .form-search {
+    float: right;
+//    width: 300px;
+    padding: 0;
+    margin: 0;
+    color: @black;
+    max-height: 37px;
+
+    .btn-default {
+      background-color: @white;
+      border: none;
+      height: 28px;
+      margin-top: 5px;
+      float: right;
+
+      &:hover {
+        background-color: @blue;
+        color: @white;
+      }
+      .round();
+    }
+    input {
+      .round();
+      padding-left: 15px;
+    }
+
+  }
+
+  #search {
+    color: @gray3;
+    float: right;
+    width: 130px;
+    height: 28px;
+    line-height: 24px;
+    margin-top: 5px;
+
+            border: none;
+      .site-inner-shadow();
+      background-color: @white;
+
+//    .transition_custom(width);
+    &:focus {
+        color: @gray5;
+//      width: 215px;
+//      .transition_custom(width);
+    }
+    &.input-text {
+      padding: 0px 0 0 5px;
+      margin: 5px 0 0;
+    }
+
+
+    @media (min-width: @screen-sm) {
+      & {
+        width: 50px;
+      }
+    }
+    @media (min-width: @screen-md) {
+      & {
+        width: 90px;
+      }
+    }
+    @media (min-width: @screen-lg) {
+      & {
+        width: 130px;
+      }
+    }
+
+
+
+  }
+
+  @media (min-width: @screen-sm) {
+//    display: none;
+  }
+}
+
+
+.form-search {
+    margin-bottom: (@line-height-computed / 2);
+    position: relative;
+
+
+
+    // Style up the autocomplete to be just
+    // like a TWBS list group.
+    .search-autocomplete {
+        z-index: @zindex-dropdown;
+
+        li {
+            .list-group-item();
+            cursor: pointer;
+
+            .amount {
+                float: right;
+            }
+
+            // Bootstrap uses a hidden list
+            // item for the first child, so
+            // we target the first child to
+            // [class="first"].
+            &.first {
+                .border-top-radius(@list-group-border-radius);
+            }
+
+            // Hover state
+            &:hover,
+            &:focus {
+              text-decoration: none;
+              background-color: @list-group-hover-bg;
+            }
+
+            // When somebody selects an item
+            &.selected,
+            &.selected:hover,
+            &.selected:focus {
+                z-index: 2; // Place active items above their siblings for proper border styling
+                color: @list-group-active-color;
+                background-color: @list-group-active-bg;
+                border-color: @list-group-active-border;
+            }
+        }
+    }
+}
+
+
+// Advanced Search
+.advanced-search .form-list {
+
+    .input-range {
+        line-height: @input-height-base;
+        small {
+            float: right;
+        }
+    }
+}
+.advanced-search-amount {
+
+}
+.advanced-search-summary {
+    .well();
+    .well-sm();
+    .clearfix();
+
+    ul {
+        margin-bottom: 0;
+        padding-left: (@grid-gutter-width / 2);
+        padding-right: (@grid-gutter-width / 2);
+    }
+
+    strong {
+        color: @brand-primary;
+    }
+
+    p {
+        clear: both;
+        padding: (@line-height-computed / 2) (@grid-gutter-width / 2) 0;
+        margin-bottom: 0;
+        font-weight: bold;
+    }
+
+    @media (min-width: @screen-xs) {
+        ul {
+            float: left;
+            width: 50%;
+        }
+    }
+}

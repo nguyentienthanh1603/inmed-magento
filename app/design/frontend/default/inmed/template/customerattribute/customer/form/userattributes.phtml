@@ -1,0 +1,407 @@
+<?php /**
+ * Create account form template */
+/* @var $this Magestore_Customerattribute_Block_Customer_Form */
+?>
+<div class="additional-attributes panel-group" id="">
+	<?php
+
+	$magentoCurrentUrl = Mage::helper('core/url')->getCurrentUrl();
+
+
+	if ($this->hasUserDefinedAttributes())
+	{
+		$countAttribute=1;
+
+		$groups = ['linician' => 'Clinician Information', 'onsumer' => 'Consumer Information'];
+
+		foreach ($this->getUserDefinedAttributes() as $attribute)
+		{
+		//	echo $attribute->getAttributeCode() . ' - ';
+		//	echo $attribute->getFrontendInput() . " - ";
+		//	echo $attribute->getStoreLabel() . " - ";
+
+			$attr[$attribute->getAttributeCode()] = [
+				'name'   => $attribute->getStoreLabel(),
+				'input'  => $attribute->getFrontendInput(),
+				'data'   => $attribute
+			];
+		}
+	}
+
+		?>
+
+	<!-- clinician specialities information -->
+	<?php
+	if ( isset($attr['clinician_specialities'])
+	&& isset($attr['clinician_specialities_other'])
+	&& isset($attr['clinician_type'])
+	&& isset($attr['clinician_rego_number'])
+	&& isset($attr['clinician_profile']))
+	{
+	?>
+		<div class="box-account box-account-padding clinician-specialities clinician_slide">
+			<h3 data-toggle="collapse" href="#cYS" class="float-left">Your Specialities <small>&raquo; Optional - Click to open</small></h3>
+
+			<div id="cYS" class="box-content panel-collapse collapse">
+
+				<ul class="form-list">
+					<li class="fields">
+						<?php
+						$attributeContent = $this->getAttributeHtml($attr['clinician_type']['data']);
+						echo $attributeContent;
+
+						$attributeContent = $this->getAttributeHtml($attr['clinician_specialities']['data']);
+						echo $attributeContent;
+
+						?>
+					</li>
+					<li class="fields">
+
+						<?php
+						$attributeContent = $this->getAttributeHtml($attr['clinician_rego_number']['data']);
+						echo $attributeContent;
+
+						$attributeContent = $this->getAttributeHtml($attr['clinician_specialities_other']['data']);
+						echo $attributeContent;
+						?>
+					</li>
+					<li class="fields">
+						<?php
+
+
+						$attributeContent = $this->getAttributeHtml($attr['clinician_profile']['data']);
+						echo $attributeContent;
+						?>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	<?php
+	}
+	?>
+	<!-- end clinician specialities information -->
+
+	<!-- clinician account information -->
+	<?php
+	if ( isset($attr['account_payment_method'])
+	&& isset($attr['account_payment_method'])
+	&& isset($attr['account_request_limit'])
+	&& isset($attr['account_years_in_business'])
+	&& isset($attr['account_social_security_ein'])
+	&& isset($attr['account_bankruptcy'])
+	&& isset($attr['account_social_security_ein']))
+	{
+	?>
+	<div class="box-account box-account-padding account-information clinician_slide">
+		<h3 data-toggle="collapse" href="#cAF" class="float-left">Account & Finance <small>&raquo; Optional - Click to open</small></h3>
+
+		<div id="cAF" class="box-content panel-collapse collapse">
+
+				<ul class="form-list">
+					<li class="fields">
+						<?php
+							$attributeContent = $this->getAttributeHtml($attr['account_payment_method']['data']);
+							echo $attributeContent;
+						?>
+					</li>
+					<li class="fields">
+						<?php
+							$attributeContent = $this->getAttributeHtml($attr['account_apply_credit']['data']);
+							echo $attributeContent;
+
+							$attributeContent = $this->getAttributeHtml($attr['account_request_limit']['data']);
+							echo $attributeContent;
+
+						?>
+					</li>
+					<li class="fields">
+						<?php
+
+							$attributeContent = $this->getAttributeHtml($attr['account_years_in_business']['data']);
+							echo $attributeContent;
+
+							$attributeContent = $this->getAttributeHtml($attr['account_social_security_ein']['data']);
+							echo $attributeContent;
+
+						?>
+					</li>
+					<li class="fields">
+						<?php
+
+							$attributeContent = $this->getAttributeHtml($attr['account_bankruptcy']['data']);
+							echo $attributeContent;
+
+						?>
+					</li>
+				</ul>
+			</div>
+
+	</div>
+	<?php
+	}
+	?>
+	<!-- end clinician account information -->
+
+	<!-- clinician school information -->
+	<?php
+	if ( isset($attr['clinician_school_graduated'])
+	&& isset($attr['clinician_school_year']))
+	{
+	?>
+		<div class="box-account box-account-padding school-information clinician_slide">
+			<h3 data-toggle="collapse" href="#cSCH" class="float-left"> School Information <small>&raquo; Optional - Click to open</small></h3>
+
+			<div id="cSCH" class="box-content panel-collapse collapse">
+
+				<ul class="form-list">
+					<li class="fields">
+						<?php
+							$attributeContent = $this->getAttributeHtml($attr['clinician_school_graduated']['data']);
+							echo $attributeContent;
+
+							$attributeContent = $this->getAttributeHtml($attr['clinician_school_year']['data']);
+							echo $attributeContent;
+						?>
+					</li>
+				</ul>
+			</div>
+
+	</div>
+	<?php
+	}
+	?>
+	<!-- end clinician school information -->
+
+
+	<!-- clinician social information -->
+	<?php
+	if ( isset($attr['facebook'])
+	&& isset($attr['twitter'])
+	&& isset($attr['linkedin'])
+	&& isset($attr['googleplus'])
+	&& isset($attr['youtube']))
+	{
+	?>
+		<div class="box-account box-account-padding social-information clinician_slide">
+			<h3 data-toggle="collapse" href="#cSI" class="float-left"> Social Information <small>&raquo; Optional - Click to open</small></h3>
+
+			<div id="cSI" class="box-content panel-collapse collapse">
+
+
+					<ul class="form-list">
+						<li class="fields">
+							<?php
+							$attributeContent = $this->getAttributeHtml($attr['facebook']['data']);
+							echo $attributeContent;
+
+							$attributeContent = $this->getAttributeHtml($attr['twitter']['data']);
+							echo $attributeContent;
+							?>
+						</li>
+						<li class="fields">
+							<?php
+							$attributeContent = $this->getAttributeHtml($attr['linkedin']['data']);
+							echo $attributeContent;
+
+							$attributeContent = $this->getAttributeHtml($attr['googleplus']['data']);
+							echo $attributeContent;
+							?>
+						</li>
+						<li class="fields">
+							<?php
+							$attributeContent = $this->getAttributeHtml($attr['youtube']['data']);
+							echo $attributeContent;
+							?>
+						</li>
+					</ul>
+
+
+		</div>
+	</div>
+	<?php
+	}
+	?>
+	<!-- end clinician social information -->
+
+
+
+	<!-- consumer clinician information -->
+	<?php
+	if ( isset($attr['consumer_pref_type'])
+	&& isset($attr['consumer_pref_special']) )
+	{
+	?>
+	<div class="box-account box-account-padding consumer-pref consumer_slide">
+		<h3 data-toggle="collapse" href="#cCP" class="float-left"> Clinician Preferences <small>&raquo; Optional - Click to open</small></h3>
+
+		<div id="cCP" class="box-content panel-collapse collapse">
+					<ul class="form-list">
+						<li class="fields">
+							<?php
+							$attributeContent = $this->getAttributeHtml($attr['consumer_pref_type']['data']);
+							echo $attributeContent;
+
+							$attributeContent = $this->getAttributeHtml($attr['consumer_pref_special']['data']);
+							echo $attributeContent;
+							?>
+						</li>
+						<li class="fields">
+
+						</li>
+					</ul>
+		</div>
+	</div>
+	<?php
+	}
+	?>
+
+	<!-- consumer clinician information -->
+	<?php
+	if ( isset($attr['consumer_interest'])
+	&& isset($attr['consumer_language']) )
+	{
+	?>
+		<div class="box-account box-account-padding optional-information consumer_slide">
+			<h3 data-toggle="collapse" href="#cEI" class="float-left">Extra Information <small>&raquo; Optional - Click to open</small></h3>
+
+			<div id="cEI" class="box-content panel-collapse collapse">
+					<ul class="form-list">
+						<li class="fields">
+							<?php
+							$attributeContent = $this->getAttributeHtml($attr['consumer_interest']['data']);
+							echo $attributeContent;
+
+							$attributeContent = $this->getAttributeHtml($attr['consumer_language']['data']);
+							echo $attributeContent;
+							?>
+						</li>
+						<li class="fields">
+
+						</li>
+					</ul>
+				</div>
+	</div>
+	<?php
+	}
+	?>
+	<!-- end consumer clinician information -->
+
+
+	<?php
+	if ( !strpos($magentoCurrentUrl, 'ustomer/address') &&
+		!strpos($magentoCurrentUrl, 'heckout/onepage'))
+	{
+	?>
+	<!-- consumer find clinician -->
+		<div class="box-account box-account-padding consumer-clinician consumer_slide">
+			<h3 data-toggle="collapse" href="#cCC" class="float-left">Select the Clinician you belong to <small>&raquo; Optional - Click to open</small></h3>
+
+			<div id="cCC" class="box-content panel-collapse collapse">
+
+				<div class="consumer_clinician_left">
+					<ul class="form-list">
+						<li class="fields">
+							<div class="field">
+								<label>Select Country</label>
+								<select id="clinician_group_country_id" name="clinician_group_country_id" title="<?php echo $this->__('State/Province') ?>" >
+									<option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+									<?php
+									//$this->setData('country_id','US'); // or 'FR'..., default is 'US'
+									$countries = $collection = Mage::getModel('directory/country')->getCollection();
+
+									$checked = '';
+									foreach($countries as $region)
+									{
+										$allow = ['CA', 'AU', 'US'];
+										if ( in_array($region->getId(),$allow))
+										{
+											if ( $region->getId() == 'US' )
+											{
+												$checked = 'selected="selected"';
+											}
+											echo '<option value="'.$region->getId().'" '.$checked.'>'.$region->getName() . '</option>';
+										}
+
+									}
+									?>
+								</select>
+							</div>
+						</li>
+						<li class="fields">
+							<div class="field">
+								<label>Select Region</label>
+								<select id="clinician_group_region_id" name="clinician_group_region_id" title="<?php echo $this->__('State/Province') ?>" >
+									<option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+									<?php
+									$this->setData('country_id','US'); // or 'FR'..., default is 'US'
+									$regions = Mage::getModel('directory/region_api')->items('US');
+
+									foreach($regions as $region)
+									{
+										echo '<option value="'.$region['name'].'">'.$region['name'] . '</option>';
+									}
+									?>
+								</select>
+								<input type="text" id="clinician_group_region_value" name="clinician_group_region_value" value="<?php echo $this->escapeHtml($this->getRegion()) ?>" title="<?php echo $this->__('State/Province') ?>" style="display:none;" />
+							</div>
+						</li>
+						<li class="fields">
+							<div class="field">
+								<label for="clinician_group_city">City</label>
+
+								<div class="input-box">
+									<input id="clinician_group_city" name="clinician_group_city" value="" class="input-text">
+								</div>
+							</div>
+						</li>
+						<li class="fields">
+							<div class="field">
+								<label>Zip/Postal Code</label>
+								<div class="input-box">
+									<input id="clinician_group_zip" name="clinician_group_zip" value="" class="input-text">
+								</div>
+							</div>
+						</li>
+						<li class="fields">
+							<div class="field">
+								<label>Company Name</label>
+								<div class="input-box">
+									<input id="clinician_group_name" name="clinician_group_name" value="" class="input-text">
+								</div>
+							</div>
+						</li>
+						<li class="fields">
+							<div class="field">
+								<div class="input-box">
+									<button type="button" class="btn btn-success" id="clinician_search">Find Clinicians</button>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+
+				<div class="consumer_clinician_right">
+					<div class="alert alert-info">
+						Please enter values on the left to find the clinician
+					</div>
+					<div class="clinician_group_result well"></div>
+					<div class="consumer_clinician_not_found">
+						<div class="checkbox-wrapper">
+							<input type="checkbox" name="clinician_not_found" value="email">
+						</div>
+						<div class="not-found-wrapper">
+							If you are unable to find your clinician, please select the checkbox below, and we will contact
+							the clinician, in order to signup.
+						</div>
+					</div>
+				</div>
+			</div>
+
+	</div>
+	<?php
+	}
+	?>
+</div>
+
+<!-- end consumer find clinician -->

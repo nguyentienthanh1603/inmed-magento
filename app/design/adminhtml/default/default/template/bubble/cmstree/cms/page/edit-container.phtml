@@ -1,0 +1,41 @@
+<?php
+/**
+ * @category    Bubble
+ * @package     Bubble_CmsTree
+ * @version     1.2.6
+ * @copyright   Copyright (c) 2014 BubbleCode (http://www.bubbleshop.net)
+ */
+?>
+<?php
+/**
+ * @see Bubble_CmsTree_Block_Adminhtml_Cms_Page_Edit
+ * @var $this Bubble_CmsTree_Block_Adminhtml_Cms_Page_Edit
+ */
+?>
+<?php echo $this->getFormInitScripts() ?>
+<div class="content-header">
+    <?php echo $this->getHeaderHtml() ?>
+    <p class="form-buttons"><?php echo $this->getButtonsHtml('header') ?></p>
+</div>
+<?php echo $this->getTabsHtml(); ?>
+<?php echo $this->getFormHtml() ?>
+<?php if ($this->hasFooterButtons()): ?>
+    <div class="content-footer">
+        <p class="form-buttons"><?php echo $this->getButtonsHtml('footer') ?></p>
+    </div>
+<?php endif; ?>
+<script type="text/javascript">
+//<![CDATA[
+if ($('page_current_tab')) {
+    $$('#page_tabs .tab-item-link').invoke('observe', 'click', function(event) {
+        var el = event.element();
+        if (el.tagName !== 'A') {
+            el = event.element().up('a');
+        }
+        $('page_current_tab').value = el.id;
+    });
+}
+editForm = new varienForm('edit_form', '<?php echo $this->getValidationUrl() ?>');
+//]]>
+</script>
+<?php echo $this->getFormScripts() ?>

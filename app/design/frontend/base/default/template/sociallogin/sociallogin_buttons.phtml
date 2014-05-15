@@ -1,0 +1,119 @@
+<?php $arrayButton = $this->makeArrayButton(); $temp = $arrayButton; ?>
+<?php $numberShow = $this->getNumberShow();?>
+<?php $countAll = 0;?>
+<?php $countMain = 0;?>
+<?php $count = 0;?>
+
+<div id="sociallogin_button">	
+	<ul class="<?php echo ($this->getDirection() == 'left') ? "left" : "right" ?>">
+	<?php foreach($arrayButton as $key => $button):?>	
+		<?php $check =$button['check'];?>
+		<?php if($check): unset($temp[$key]);?>					
+			<li class="button left"> <?php echo $button['button']?> </li>
+			<script type="text/javascript">
+				$('<?php echo $button['id'] ?>').addClassName('visible');
+				$('<?php echo $button['id'] ?>' ).setStyle('min-width: 80px');
+			</script>	
+			<?php ++$countMain ;?>			
+		<?php endif;?>
+		<?php if($countMain == $numberShow){break;} ?>
+	<?php endforeach;?>
+                        <?php if(count($temp)):?>
+                        <li class="button left"><a id="sociallogin-other-a-header"> <span class="sociallogin-other-span">
+				<?php echo $this->__('Other login') ?>
+			</span><span class="sociallogin-other-span-img-popup"></span></a></li>
+                        <?php endif;?>
+	</ul>	
+	<?php if(count($temp)):?>
+	<?php $noEmpty = false;?>
+	<?php foreach($temp as $tem):?>
+	<?php if($tem['check']):?>
+	<?php $noEmpty = true;?>
+	<?php endif;?>
+	<?php endforeach;?>
+	<?php if($noEmpty):?>
+	<div class="sociallogin-other" id="sociallogin-other-header" style="display:none;">
+		<div id="sociallogin-other-div">					
+			<ul class="sociallogin-other-button" id="sociallogin-other-button">
+			<?php $i=0; foreach($temp as $button):?>				
+				<?php $check = $button['check']; ?>
+				<?php if($check): $count ++;?>	
+                                <?php if($i%3==0): ?><ol><?php endif; ?>
+					<li class="button left other-button"> <?php echo $button['button'] ?> </li>	
+					<script type="text/javascript">
+						$('<?php echo $button['id'] ?>').addClassName('non-visible');
+					</script>					
+                                <?php if($i%3==2||$i==count($temp)): ?></ol><?php endif; ?>
+                                            <?php endif;?>			
+			<?php $i++; endforeach;?>  
+			</ul>
+		</div>
+	</div>	
+        <script type="text/javascript">              
+            $("sociallogin-other-a-header").observe('click', function() {
+                 var width_all = $('sociallogin_button').getWidth(); 
+                 var off = $('sociallogin-other-a-header').positionedOffset();
+                 var top = off[1] + $('sociallogin-other-a-header').getHeight();
+                 var left = off[0] + $('sociallogin-other-a-header').getWidth();
+                 <?php if($this->getDirection() == 'left'):?>
+                    $('sociallogin-other-button').setStyle({
+                        'left':off[0]+3+'px',
+                        'top':top+10+'px',
+                    });
+                 <?php  else :?>
+                    $('sociallogin-other-button').setStyle({
+                            'right':width_all-left-3+'px',
+                            'top':top+10+'px',
+                        });
+                 <?php endif;?>
+                Effect.toggle($('sociallogin-other-header'), 'appear',{duration:0.5});	
+                if(this.hasClassName('active')){
+                    this.removeClassName('active');
+                   // Effect.SlideUp($('sociallogin-other-button-popup'),{duration:0.3});
+                 }else{
+                    this.addClassName('active');
+                    //Effect.SlideDown($('sociallogin-other-button-popup'),{duration:0.3});
+                 }                		
+             });
+             
+        </script>
+	<?php endif; ?>
+	<?php endif; ?>
+</div>
+<style type="text/css">
+<?php if($this->getDirection() == 'left'):?>
+.bt-login-social{margin:0 5px 0 0;}
+.sociallogin-other-button {
+    background: none repeat scroll 0 0 #f1f1f1;
+    left: 0;
+    opacity: 0.96;
+    position: absolute;  
+    padding-left:10px;
+    z-index:1000;
+    width:555px;
+}
+
+#sociallogin-other-div {
+    display: block;
+    float: left;
+	margin-left: 3px;
+}
+<?php else: ?>
+.bt-login-social{margin:0 0 0 5px;}
+#sociallogin-other-div {
+    display: block;
+    float: right;
+    margin-right: 3px;
+}
+.sociallogin-other-button{
+    background: none repeat scroll 0 0 #f1f1f1;
+    opacity: 0.96;
+    position: absolute;    
+    right:0px;
+    padding-left:10px;
+    z-index:1000;
+    width:555px;
+}
+<?php endif;?>
+</style>
+<div class="clear"></div>

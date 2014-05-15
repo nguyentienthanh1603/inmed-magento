@@ -1,0 +1,15 @@
+<script type="text/javascript">
+//<![CDATA[
+if (!Mage.Cookies.path) {
+    Mage.Cookies.path = '<?php echo Mage::getSingleton('core/cookie')->getPath() ?>';
+}
+if (!Mage.Cookies.domain) {
+    Mage.Cookies.domain = '<?php echo Mage::getSingleton('core/cookie')->getDomain() ?>';
+}
+var messages = Mage.Cookies.get('global_messages');
+if (messages) {
+    document.write(decodeURIComponent((messages + '').replace(/\+/g, '%20')));
+    Mage.Cookies.set('global_messages', '');
+}
+//]]>
+</script>

@@ -1,0 +1,53 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php $posts = $this->getPosts();
+
+//var_dump($posts->getItems()->getPostTitle() );
+?>
+<?php if (count($posts) > 0): ?>
+	<div class="block block-blog block-recent-posts">
+		<?php if ($title = $this->getTitle()): ?>
+
+			<?php
+			foreach($posts as $post)
+			{
+				$urlSeq = explode("//",$post->getPermalink());
+//				var_dump($urlSeq);
+				if ( isset($urlSeq[1] ) )
+				{
+					$urlSeq2 = explode('/', $urlSeq[1] );
+//					var_dump($urlSeq2);
+					array_pop($urlSeq2);
+					array_pop($urlSeq2); // doing twice because url ends with /
+//					var_dump($urlSeq2);
+					$urlSeq[1] = implode('/', $urlSeq2);
+//					var_dump($urlSeq);
+				}
+				$_catUrl = $urlSeq[0].'//'.$urlSeq[1];
+			}
+			?>
+			<div class="block-title">
+				<a href="<?php echo $_catUrl; ?>"><?php echo $this->__($title); ?></a>
+			</div>
+		<?php endif; ?>
+		<div class="block-content">
+			<ul id="<?php echo $this->getListId() ?>">
+			<?php foreach($posts as $post): ?>
+				<li class="item">
+					<a href="<?php echo $post->getPermalink() ?>" title="<?php echo $this->htmlEscape($post->getPostTitle()) ?>"><?php echo $this->htmlEscape($post->getPostTitle()) ?></a>
+					<?php
+						//var_dump($post->getCategoryIds());
+					?>
+				</li>
+			<?php endforeach; ?>
+			</ul>
+			<script type="text/javascript">decorateList('<?php echo $this->getListId() ?>')</script>
+		</div>
+	</div>
+<?php endif; ?>

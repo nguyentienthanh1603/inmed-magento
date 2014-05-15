@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<config>	
+	<modules>
+        <Ho_Handles>
+            <version>0.1.0</version>
+        </Ho_Handles>
+    </modules>
+
+	<frontend>
+        <events>
+            <controller_action_layout_load_before>
+                <observers>
+                    <add_category_path_handle>
+                        <type>singleton</type>
+                        <class>Ho_Handles_Model_Observer</class>
+                        <method>addCategoryPathHandle</method>
+                    </add_category_path_handle>
+                    <add_attribute_set_handle>
+                        <type>singleton</type>
+                        <class>Ho_Handles_Model_Observer</class>
+                        <method>addAttributeSetHandle</method>
+                    </add_attribute_set_handle>
+                    <add_attribute_handles>
+                        <type>singleton</type>
+                        <class>Ho_Handles_Model_Observer</class>
+                        <method>addAttributeHandles</method>
+                    </add_attribute_handles>
+                    <add_cms_page_handle>
+                        <type>singleton</type>
+                        <class>Ho_Handles_Model_Observer</class>
+                        <method>addCmsPageHandle</method>
+                    </add_cms_page_handle>
+                    <add_customer_group_handle>
+                        <type>singleton</type>
+                        <class>Ho_Handles_Model_Observer</class>
+                        <method>addCustomerGroupHandle</method>
+                    </add_customer_group_handle>
+                </observers>
+            </controller_action_layout_load_before>
+        </events>
+	</frontend>
+</config>

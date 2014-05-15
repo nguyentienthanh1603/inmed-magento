@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout>
+    <ajaxclinicians_ajax_index>
+            <!--<block type="ajaxclinicians/ajaxclinicians" name="root" template="page/empty.phtml" />-->
+
+        <reference name="root">
+            <action method="setTemplate"><template>ajaxclinicians/ajaxclinicians.phtml</template></action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle"><applied>1</applied></action>
+        </reference>
+
+    </ajaxclinicians_ajax_index>
+</layout>
+

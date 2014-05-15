@@ -1,0 +1,24 @@
+<?xml version="1.0"?>   
+<layout version="0.1.0">   
+  <prescriptions_index_index>
+      <update handle="customer_account"/>
+    <reference name="root">   
+      <action method="setTemplate"><template>page/dashboard.phtml</template></action>
+    </reference>   
+    <reference name="content">   
+      <block type="prescriptions/index" name="prescriptions_index" template="prescriptions/index.phtml"/>   
+    </reference>   
+  </prescriptions_index_index>
+
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink"  translate="label" module="prescriptions">
+            <name>prescriptions</name>
+            <path>prescriptions/index</path>
+            <label>Prescriptions</label>
+            </action>
+        </reference>
+    </customer_account>
+
+</layout>   
+	

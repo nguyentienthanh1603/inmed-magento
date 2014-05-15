@@ -1,0 +1,22 @@
+<?php
+/**
+ * @category    Bubble
+ * @package     Bubble_FPC
+ * @version     1.2.18
+ * @copyright   Copyright (c) 2014 BubbleCode (http://www.bubbleshop.net)
+ */
+?>
+<div class="content-header" style="overflow: hidden; width: 100%;">
+    <table cellspacing="0">
+        <tr>
+            <td style="<?php echo $this->getHeaderWidth() ?>"><?php echo $this->getHeaderHtml() ?></td>
+            <td class="form-buttons"><?php echo $this->getButtonsHtml() ?></td>
+        </tr>
+    </table>
+</div>
+<div>
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+</div>
+<div>
+    <?php echo $this->getGridHtml() ?>
+</div>

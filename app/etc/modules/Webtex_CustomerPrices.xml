@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+ /**
+ * WEBTEX Prices By Customers Extension
+ *
+ * @category     Extension
+ * @copyright    Copyright (c) 2011
+ * @author       WebTex
+ */
+ -->
+<config>
+    <modules>
+        <Webtex_CustomerPrices>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Webtex_CustomerPrices>
+	</modules>
+</config>

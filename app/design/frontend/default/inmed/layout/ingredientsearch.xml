@@ -1,0 +1,33 @@
+<?xml version="1.0"?>   
+<layout version="0.1.0">   
+  <ingredientsearch_index_index>   
+    <reference name="root">   
+      <action method="setTemplate"><template>page/ingredients.phtml</template></action>
+    </reference>
+
+      <reference name="right">
+          <!--<block type="catalog/navigation" name="catalog.leftnav" after="currency" template="catalog/layer/listing.phtml"/>-->
+
+
+          <block type="core/template" name="right.permanent.callout1" template="callouts/right_col.phtml">
+              <action method="setImgSrc"><src>images/media/payments.png</src></action>
+              <action method="setImgAlt" translate="alt" module="catalog"><alt>We accept the following Payment methods.</alt></action>
+              <action method="setLinkUrl"><url>order-information/payments</url></action>
+              <action method="setLinkTitle"><alt>Accepted payment methods</alt></action>
+          </block>
+
+          <block type="core/template" name="right.permanent.callout" template="callouts/right_col.phtml">
+              <action method="setImgSrc"><src>images/media/shipping.png</src></action>
+              <action method="setImgAlt" translate="alt" module="catalog"><alt>Delivery</alt></action>
+              <action method="setLinkUrl"><url>order-information/shipping-delivery</url></action>
+              <action method="setLinkTitle"><alt>Our Shipping Providers</alt></action>
+          </block>
+
+      </reference>
+
+    <reference name="content">   
+      <block type="ingredientsearch/index" name="ingredientsearch_index" template="ingredientsearch/index.phtml"/>   
+    </reference>   
+  </ingredientsearch_index_index>   
+</layout>   
+	

@@ -1,0 +1,90 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php
+
+$post = $this->getPost();
+
+
+//-------------------------------------------------------
+//------------ Check if a contributer article ---------------------
+//-------------------------------------------------------
+$urlString = Mage::helper('core/url')->getCurrentUrl();
+$url = Mage::getSingleton('core/url')->parseUrl($urlString);
+$_contributer_article = false;
+if (strpos($url->getPath(),'im-listening/contributors') == 1 )
+{
+	if ( in_array(7,$post->getCategoryIds()) && !strpos($url->getPath(),'all')  )
+	{
+		$_contributer_article = true;
+	}
+}
+//-------------------------------------------------------
+//------------ end ---------------------
+//-------------------------------------------------------
+
+
+?>
+<?php if ($post): ?>
+	<?php $helper = $this->helper('wordpress') ?>
+	<?php $author = $post->getAuthor();
+
+
+	$authorAvatar= $post->getAuthorAvatarUrl(50, $author->getUserEmail());
+
+
+	?>
+	<div class="panel panel-default">
+
+		<div class="panel-body">
+
+			<h2 class="float-left"><?php echo $post->getPostTitle() ?>
+				<?php
+				if ( !$_contributer_article )
+				{
+					?>
+					<small>By <a href="<?php echo Mage::getBaseUrl().'im-listening/contributors/'. $post->getAuthor()->getUserNicename(); ?>"><?php echo $post->getAuthor()->getDisplayName(); ?></a></small>
+					<span><?php echo $post->getPostDate(); ?></span>
+					<?php
+				}
+				?>
+			</h2>
+
+			<div class="post-view">
+
+				<?php echo $this->getBeforePostContentHtml() ?>
+				<div class="post-entry entry std<?php if ($post->getFeaturedImage()): ?> post-entry-with-image<?php endif; ?>">
+					<?php if ($post->isViewableForVisitor()): ?>
+						<?php if ($featuredImage = $post->getFeaturedImage()): ?>
+							<div class="featured-image left"><img src="<?php echo $featuredImage->getAvailableImage() ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"/></div>
+						<?php endif; ?>
+						<?php echo $post->getPostContent() ?>
+
+						<?php
+						if ( $_contributer_article )
+						{
+							?>
+						<div class="contributer-actions">
+							<a href="<?php echo $urlString; ?>/all" class="btn btn-primary">View all my articles</a>
+							</div>
+						<?php
+						}
+						?>
+
+					<?php else: ?>
+						<?php echo $this->getPasswordProtectHtml() ?>
+					<?php endif; ?>
+				</div>
+
+				<?php //echo $this->getAfterPostContentHtml() ?>
+
+				<?php echo $this->getCommentsHtml() ?>
+			</div>
+		</div>
+	</div>
+<?php endif; ?>

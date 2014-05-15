@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SGoodwin_Layouts>
+            <version>0.1.0</version>
+        </SGoodwin_Layouts>
+    </modules>
+    <global>
+
+        <helpers>
+            <layouts>
+                <class>SGoodwin_Layouts_Helper</class>
+            </layouts>
+        </helpers>
+        <page>
+            <layouts>
+                <page_imlistening module="page" translate="label">
+                    <label>IM Listening Landing Page</label>
+                    <template>page/imlistening.phtml</template>
+                    <layout_handle>page_imlistening</layout_handle>
+                </page_imlistening>
+                <page_inmeddifference module="page" translate="label">
+                    <label>InMed Difference Landing Page</label>
+                    <template>page/inmed_difference.phtml</template>
+                    <layout_handle>page_inmeddifference</layout_handle>
+                </page_inmeddifference>
+                <page_inmeddifference_page module="page" translate="label">
+                    <label>InMed Difference Standard Page</label>
+                    <template>page/inmed_difference_page.phtml</template>
+                    <layout_handle>page_inmeddifference_page</layout_handle>
+                </page_inmeddifference_page>
+                <page_consumers module="page" translate="label">
+                    <label>Consumers Landing Page</label>
+                    <template>page/consumers.phtml</template>
+                    <layout_handle>page_comsumers</layout_handle>
+                </page_consumers>
+                <page_clinicians module="page" translate="label">
+                    <label>Clinicians Landing Page</label>
+                    <template>page/clinicians.phtml</template>
+                    <layout_handle>page_clinicians</layout_handle>
+                </page_clinicians>
+                <page_register module="page" translate="label">
+                    <label>Register Page</label>
+                    <template>page/register.phtml</template>
+                    <layout_handle>page_register</layout_handle>
+                </page_register>
+                <page_cms module="page" translate="label">
+                    <label>CMS Page</label>
+                    <template>page/cms.phtml</template>
+                    <layout_handle>page_cms</layout_handle>
+                </page_cms>
+                <page_contact module="page" translate="label">
+                    <label>Contact Page</label>
+                    <template>page/contact.phtml</template>
+                    <layout_handle>page_contact</layout_handle>
+                </page_contact>
+                <page_products module="page" translate="label">
+                    <label>Products Page</label>
+                    <template>page/products.phtml</template>
+                    <layout_handle>page_products</layout_handle>
+                </page_products>
+                <page_home module="page" translate="label">
+                    <label>Home Page</label>
+                    <template>page/home.phtml</template>
+                    <layout_handle>page_home</layout_handle>
+                </page_home>
+                <page_about_us module="page" translate="label">
+                    <label>About Us Landing Page</label>
+                    <template>page/about_us.phtml</template>
+                    <layout_handle>page_about_use</layout_handle>
+                </page_about_us>
+                <!-- add more layouts here -->
+            </layouts>
+        </page>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <sgoodwin_layouts>
+                    <file>sgoodwin_layouts.xml</file>
+                </sgoodwin_layouts>
+            </updates>
+        </layout>
+    </frontend>
+</config>

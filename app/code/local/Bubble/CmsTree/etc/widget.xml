@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<widgets>
+    <bubble_cms_page_children type="bubble_cmstree/widget_page_children" translate="name description" module="bubble_cmstree">
+        <name>CMS Page Children</name>
+        <description>List of current CMS page children.</description>
+        <parameters>
+            <title translate="label description">
+                <label>Title</label>
+                <description>Title to display before children list.</description>
+                <type>text</type>
+                <visible>1</visible>
+            </title>
+            <levels translate="label description">
+                <label>Number of Levels</label>
+                <description>Number of levels to display (empty means unlimited).</description>
+                <type>text</type>
+                <visible>1</visible>
+            </levels>
+            <css_class translate="label description">
+                <label>CSS Class</label>
+                <description>Will be added to the list container element.</description>
+                <type>text</type>
+                <visible>1</visible>
+            </css_class>
+        </parameters>
+    </bubble_cms_page_children>
+</widgets>

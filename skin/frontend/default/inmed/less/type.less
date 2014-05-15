@@ -1,0 +1,185 @@
+@import "../bower_components/bootstrap/less/type.less";
+
+h1, .h1 {
+    font-size: floor(@font-size-base * 1.8);
+    padding-bottom: 5px;
+    border-bottom: 2px solid @gray1;
+  font-family: @fontOpenSans;
+  color: @blue;
+  font-weight: bold;
+  .text-shadow;
+}
+h2, .h2 { font-size: floor(@font-size-base * 1.6); }
+h3, .h3 { font-size: ceil(@font-size-base * 1.4);  }
+h4, .h4 {
+  font-size: ceil(@font-size-base * 1.5);
+  color: @blue;
+  font-family: @fontPTSans;
+  margin-bottom: 5px;
+
+  small {
+    color: @blue;
+  }
+}
+h5, .h5 { font-size:  @font-size-base; }
+h6, .h6 { font-size: ceil(@font-size-base * 0.85); }
+
+.page-title {
+    .clearfix();
+    .page-header();
+    margin-top: 0;
+
+    .separator {
+        margin: 0 3px;
+    }
+
+    .link-rss {
+        float: right;
+        margin: 7px 0 0;
+    }
+}
+
+.title-buttons {
+    text-align: right;
+
+    h1, h2, h3,
+    h4, h5, h6 {
+        float: left;
+    }
+}
+
+.subtitle,
+.sub-title {
+    color: @headings-small-color;
+}
+
+
+
+
+h1 small, h2 small, h3 small {
+  color: ligthen(@gray3, 10%);
+  font-weight: bold;
+  font-family: @fontOpenSansNarrow;
+}
+
+h2.float-left {
+  margin: 0px 0 15px;
+  padding: 0px 10px 0px 20px;
+  line-height: 40px;
+  background: @blueLight;
+  position: relative;
+  width: 100%;
+  left:-25px;
+  font-size: 25px;
+  display: inline-block;
+  font-weight: bold;
+  color: @white;
+  text-transform: uppercase;
+  font-family: @fontOpenSansNarrow;
+  .blue-header-shadow;
+  //        .text-shadow;
+  .clearfix;
+
+  &.postlists {
+    line-height: 40px;
+  }
+
+  small, span {
+    font-weight: normal;
+    color: @white;
+    font-size: 17px;
+  }
+  span.date {
+    font-family: @fontOpenSansNarrow;
+    padding-top: 5px;
+    color: @white;
+    font-size: 14px;
+    float: right;
+  }
+  a {
+    color: @white;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+h3.float-left {
+  margin: 0;
+  padding: 0px 10px 0px 20px;
+  line-height: 40px;
+  background: @blueLight;
+  position: absolute;
+  left: 10px;
+  display: inline-block;
+  color: @white;
+  text-transform: uppercase;
+  font-family: @fontPTSans;
+  .blue-header-shadow;
+  .text-shadow;
+
+
+
+  &.cms-heading {
+    margin-top: 10px;
+    left: 0;
+    .clearfix;
+    position: relative;
+  }
+
+  &.imlistening-heading {
+    margin-top: 0px;
+    left: 10px;
+    .clearfix;
+
+  }
+
+  &.loginregister {
+    left: -5px;
+  }
+
+  small {
+    line-height: 40px;
+    float: right;
+    color: @white;
+    text-transform: capitalize;
+    font-weight: normal;
+    font-size: 16px;
+    &:hover {
+      color: @gray1;
+    }
+  }
+
+}
+
+h4 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+h4.sub-float-left {
+  margin: 0;
+
+  width: 100%;
+  line-height: 18px;
+//    position: absolute;
+  left: 10px;
+  display: inline-block;
+  color: @blue;
+  text-transform: uppercase;
+  font-family: @fontPTSans;
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 1px solid @gray2;
+  margin-bottom: 10px;
+
+//  .text-shadow;
+
+
+}
+
+.read-more {
+  color: @blue;
+  line-height: 30px;
+
+}

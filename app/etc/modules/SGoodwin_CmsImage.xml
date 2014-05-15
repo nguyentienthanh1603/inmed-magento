@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SGoodwin_CmsImage>
+            <active>true</active>
+            <codePool>false</codePool>
+        </SGoodwin_CmsImage>
+    </modules>
+</config>

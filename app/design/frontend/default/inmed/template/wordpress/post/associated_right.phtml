@@ -1,0 +1,33 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+
+<?php if (($posts = $this->getPostCollection()) !== false): ?>
+<?php if (count($posts) > 0): ?>
+		<div class="block block-blog block-recent-posts">
+			<h3 class="float-left">
+				Related Articles
+			</h3>
+			<div class="block-content">
+				<ul class="" id="relatedPosts">
+				<?php foreach($posts as $post): ?>
+					<li class="item">
+
+						<a href="<?php echo $post->getPermalink() ?>"><?php echo $post->getPostTitle() ?></a>
+						<?php
+						//var_dump($post);
+						?>
+
+					</li>
+				<?php endforeach; ?>
+				</ul>
+				<script type="text/javascript">decorateList('relatedPosts')</script>
+			</div>
+		</div>
+<?php endif; ?>
+<?php endif; ?>

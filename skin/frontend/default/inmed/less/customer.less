@@ -1,0 +1,736 @@
+
+p.bg-danger.dashboard {
+  padding: 10px;
+  text-align: center;
+}
+
+// gravatar
+.contact-information
+{
+
+  td {
+    line-height: 30px;
+    vertical-align: top;
+
+    strong {
+      min-width: 100px;
+      display: inline-block;
+    }
+
+    &.dashboard-image {
+      padding: 3px 0 10px;
+      img {
+        max-width: 32px;
+      }
+    }
+  }
+}
+
+
+// Login
+.account-login .content {
+    min-height: 242px; // Height of the larger side
+}
+
+// Captcha
+.captcha-image {
+    position: relative;
+    width: 258px;
+}
+.captcha-note {
+    clear: left;
+    padding-top: 5px;
+}
+.captcha-image .captcha-img {
+    border-radius: @input-border-radius;
+    border: 1px solid @input-border;
+    width: 100%;
+}
+.registered-users .captcha-image {
+    margin: 0;
+}
+.captcha-reload {
+    cursor: pointer;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+
+    .refreshing {
+        -webkit-animation: captcha-rotate 1.5s infinite linear;
+           -moz-animation: captcha-rotate 1.5s infinite linear;
+                animation: captcha-rotate 1.5s infinite linear;
+    }
+}
+
+@-webkit-keyframes captcha-rotate {
+    0% { -webkit-transform: rotate(0); }
+    0% { -webkit-transform: rotate(-360deg); }
+}
+@-moz-keyframes captcha-rotate {
+    0% { -moz-transform: rotate(0); }
+    0% { -moz-transform: rotate(-360deg); }
+}
+@keyframes captcha-rotate {
+    0% { transform: rotate(0); }
+    0% { transform: rotate(-360deg); }
+}
+
+// General Account Box
+.box-account {
+    .panel();
+    padding: 15px;
+    border-color: @panel-default-border;
+
+    .box-head {
+        margin: -15px -15px 15px;
+        .clearfix();
+        .panel-heading();
+        border-color: @panel-default-border;
+        background-color: @panel-default-heading-bg;
+        color: @panel-default-text;
+
+        h2 {
+            float: left;
+            .panel-title();
+        }
+
+        a {
+            float: right;
+        }
+    }
+
+    @media (max-width: @screen-sm) {
+        width: 100%;
+        overflow-y: hidden;
+        overflow-x: scroll;
+    }
+}
+
+// Dashboard
+.dashboard {
+    .box .box-title {
+        .clearfix();
+        padding: 0 0 (@line-height-computed / 2);
+        margin: 0 0 (@line-height-computed / 2);
+        border-bottom: 1px solid @panel-default-border;
+
+        text-align: right;
+
+        h3,
+        h4 {
+            margin: 0;
+            float: left;
+            font-size: @font-size-large;
+        }
+    }
+
+    // Fix for the spacing when a box is nested in a column set.
+    .col2-set > .box > .box-title {
+        margin-left: (@grid-gutter-width / 2);
+        margin-right: (@grid-gutter-width / 2);
+    }
+}
+
+// Recent orders
+.dashboard .box-recent {
+
+    .data-table {
+        margin-bottom: 0;
+    }
+}
+
+// Account information
+.dashboard .box-info {
+    p,
+    address {
+        margin: 0;
+    }
+    .box {
+        margin-bottom: (@line-height-computed * 1.5);
+    }
+}
+
+// Block: Reviews
+.dashboard .box-reviews {
+    ol {
+        margin-bottom: 0;
+    }
+    .number {
+        float: left;
+    }
+    .details {
+        margin-left: 20px;
+    }
+    li.item {
+        .clearfix();
+        margin-bottom: (@line-height-computed / 2);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    .ratings {
+        margin-top: (@line-height-computed / 4);
+    }
+}
+
+/* Block: Tags */
+.dashboard .box-tags {
+    .number {
+        float: left;
+    }
+    .details {
+        margin-left: 20px;
+    }
+    li.item {
+        margin-bottom: (@line-height-computed / 2);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    .tags {
+        strong,
+        ul,
+        ul li {
+            display: inline;
+        }
+    }
+}
+
+// Address Book
+.addresses-list {
+    h2 {
+        font-size: @font-size-large;
+    }
+    h3 {
+        margin-top: 0;
+        font-size: @font-size-base;
+    }
+    address {
+        margin: 0 0 3px;
+    }
+    p {
+        margin: 0;
+    }
+    .link-remove {
+        color: @alert-danger-text;
+    }
+    .separator {
+        margin: 0 3px;
+    }
+
+    li.item {
+        .panel();
+        padding: 15px;
+        border-color: @panel-default-border;
+
+        h3 {
+            margin: -15px -15px 15px;
+            .panel-heading();
+            border-color: @panel-default-border;
+            background-color: @panel-default-heading-bg;
+            color: @panel-default-text;
+        }
+    }
+    li.empty {
+        background: none;
+        border: 0;
+        padding: 0;
+    }
+    .addresses-additional li.item {
+
+    }
+}
+
+// Order View
+.order-info {
+    margin-bottom: (@line-height-computed / 2);
+    border-bottom: 1px solid @hr-border;
+
+    dd {
+        padding-left: 10px;
+    }
+
+    li {
+        display: inline;
+        margin: 0 3px;
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+    .current {
+        font-weight: bold;
+    }
+}
+
+.order-date {
+    margin-bottom: (@line-height-computed / 2);
+}
+
+.order-info-box {
+    .panel();
+    margin-left: 0;
+    margin-right: 0;
+    border-color: @panel-default-border;
+    padding-top: 15px;
+
+    .box {
+        margin-bottom: 15px;
+    }
+
+    h2 {
+        margin-top: 0;
+        font-size: @font-size-base;
+    }
+
+    address {
+        margin-bottom: 0;
+    }
+}
+
+.order-items {
+    h2 {
+        font-size: @font-size-large;
+    }
+    h3 {
+        font-size: @font-size-small;
+    }
+
+    .order-links {
+        text-align: right;
+    }
+}
+
+.order-additional {
+    margin: (@line-height-computed / 2) 0;
+}
+
+// Order Gift Message
+.gift-message {
+    .panel();
+    padding: 15px;
+    border-color: @panel-default-border;
+
+    dt {
+        padding-left: 10px;
+
+        strong {
+            display: block;
+            margin-left: -10px;
+        }
+    }
+    dd {
+        margin-top: (@line-height-computed / 2);
+    }
+}
+
+// Inside the table
+.gift-message-row .gift-message {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+// Order Comments
+.order-about {
+    .panel();
+    padding: 15px;
+    border-color: @panel-default-border;
+
+    dd {
+        margin-bottom: (@line-height-computed / 2);
+        padding-left: 10px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+// My Wishlist
+.my-wishlist {
+    textarea {
+        .form-control();
+        height: auto;
+    }
+
+    .price-box {
+        margin-bottom: (@line-height-computed / 4);
+    }
+
+    .add-to-cart-alt {
+        input.input-text {
+            margin-bottom: (@line-height-computed / 4);
+        }
+        .btn-cart {
+            display: block;
+            margin-bottom: (@line-height-computed / 4);
+            width: 100%;
+        }
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+
+    .link-edit {
+        .btn();
+        .btn-default();
+        width: 100%;
+        display: block;
+    }
+
+    .btn-add {
+        .btn-primary();
+    }
+}
+
+.product-review {
+    .product-img-box {
+        float: left;
+        width: 140px;
+
+        .product-image {
+            .img-responsive();
+        }
+
+        .label {
+            font-size: @font-size-small;
+        }
+
+        .ratings .rating-box {
+            display: block;
+            float: none;
+            margin-bottom: (@line-height-computed / 4);
+        }
+    }
+
+    .product-details {
+        margin-left: 150px;
+    }
+    .product-name {
+        margin-bottom: (@line-height-computed / 2);
+        font-size: @font-size-large;
+    }
+    h3 {
+        font-size: @font-size-base;
+    }
+
+    .ratings-table { margin:0 0 10px; }
+
+    dt {
+        margin-bottom: (@line-height-computed / 4);
+    }
+}
+
+// Billing Agreements
+.billing-agreements {
+    .info-box {
+        margin: (@line-height-computed / 2) 0;
+    }
+    .form-list li {
+        select {
+            float: left;
+        }
+        button.button {
+            float: left;
+            margin-left: 10px;
+        }
+    }
+    .table-caption {
+        font-weight: bold;
+    }
+}
+
+// register
+.consumer_clinician_wrapper {
+  .clearfix();
+}
+
+
+.registered-users,
+.new-users,
+.forgotten-password{
+  .box-account {
+    min-height: 360px;
+
+    .btn-group {
+      position: absolute;
+      width: 90%;
+      bottom: 40px;
+    }
+  }
+}
+
+
+.forgotten-password{
+  h3.float-left {
+    left: 10px;
+  }
+  .box-account {
+    min-height: 260px;
+  }
+}
+
+.welcome-customer,
+.coupon-information,
+.address-books,
+.address-book{
+  h3 {
+    width: 95%;
+  }
+}
+.address-book {
+  min-height: 70px;
+
+
+}
+
+table.address-table {
+  width: 100%;
+  tr {
+
+    td {
+      padding: 5px 5px 5px 0;
+      width: 50%;
+      vertical-align: top;
+
+      .addresses-additional {
+
+        li.item {
+          padding-top: 10px;
+          border-bottom: 1px solid @gray1;
+          padding-bottom: 10px;
+        }
+      }
+
+    }
+  }
+}
+.address-books {
+
+  .addresses-default {
+    padding-top: 0px;
+
+    ol {
+
+      li {
+
+        &.item {
+          address {
+            margin-bottom: 10px;
+          }
+          border-bottom: 1px solid @gray1;
+          padding-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+
+.update-details, .save-detail {
+
+  background-color: @white;
+  a.back-link {
+    .btn;
+    .btn-default;
+    display: inline-block;
+  }
+  button {
+    float: right;
+  }
+
+}
+
+.customer-order-information {
+  width: 100%;
+  td {
+    width: 50%;
+    vertical-align: top;
+    p {
+      strong {
+//        font-weight: normal;
+      }
+    }
+    table {
+      th {
+        font-weight: normal;
+      }
+    }
+
+    h4 {
+
+    }
+  }
+}
+
+.account-create {
+
+  .page-title {
+    h1 {
+      margin: 10px 0 30px;
+      padding: 0px 10px 0px 20px;
+      line-height: 40px;
+      background: @blueLight;
+      position: absolute;
+      left: 10px;
+      display: inline-block;
+      color: @white;
+      width: 98%;
+      text-transform: uppercase;
+      font-family: @fontPTSans;
+      .blue-header-shadow;
+      .text-shadow;
+    }
+    height: 50px;
+  }
+  .account_type {
+    height: 180px;
+    .membership_consumer,
+    .membership_clinician {
+      .radio-wrapper { display: none}
+      width: 45%;
+      height: 150px;
+      border: 1px solid @gray2;
+      float: left;
+      margin-left: 3%;
+      background-color: @white;
+      .round(1px);
+
+      &:hover {
+        border: 1px solid @blueLight;
+        background-color: @gray0;
+      }
+      &.selected-membership {
+        background-image: url('../../images/tick.png');
+        background-repeat: no-repeat;
+        background-position: 97% 5px;
+        border: 1px solid @blue;
+        background-color: @gray0;
+      }
+    }
+  }
+  .newsletter-wrapper {
+    margin-top: 33px;
+    .input-box {
+      float: left;
+      width: 20px;
+    }
+  }
+}
+
+.consumer_clinician_left,
+.consumer_clinician_right{
+  width: 47%;
+  float: left;
+
+  .field {
+    width: 100%;
+  }
+}
+.consumer_clinician_right {
+  float: right;
+  margin-right: 2%;
+
+  .alert-info {
+    padding: 3px 6px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 13px;
+    .round(1px);
+    border: 1px solid @blue;
+  }
+
+  .consumer_clinician_not_found {
+    div {
+      display: inline-block;
+      float: left;
+      &.checkbox-wrapper {
+        width: 20px;
+      }
+      &.not-found-wrapper {
+        width: 93%;
+        font-size: 12px;
+        padding-top: 5px;
+        line-height: 18px;
+      }
+    }
+
+  }
+
+  .clinician_group_result {
+    .round(2px);
+    background-color: @white;
+    border: 1px solid @blueLight;
+    padding: 0;
+    max-height: 260px;
+    min-height: 260px;
+    margin-bottom: 10px;
+    overflow: scroll;
+//    max-height: 180px;
+
+    .clinician_search_results {
+      text-align: center;
+      border-bottom: 2px solid @blue;
+      font-family: @fontOpenSansNarrow;
+      font-weight: bold;
+      color: @white;
+      background-color: @blueLight;
+    }
+    ul {
+      &.clinician_list {
+//        padding: 3px 10px;
+
+        li {
+          background-color: @white;
+          padding: 3px 7px;
+
+          .clinician_select {
+            width: 20px;
+            float: left;
+          }
+          .clinician_name {
+            font-size: 16px;
+            font-weight: bold;
+            font-family: @fontPTSans;
+            padding-top: 4px;
+          }
+          .clinician_city_region {
+            padding-left: 20px;
+            font-size: 13px;
+          }
+
+          &:nth-child(even) {
+            background-color: @gray0;
+          }
+          &:hover {
+            background-color: darken(@gray0, 5%);
+          }
+          &.selected-clinician {
+            background-color: lighten(@blueLight, 50%);
+          }
+
+        }
+      }
+    }
+  }
+}
+
+.membership-terms {
+
+  .box-content {
+    margin-top: 60px;
+    padding: 4px;
+    max-height: 200px;
+    border: 1px solid @gray1;
+    overflow: scroll;
+    p { font-size: 12px;}
+  }
+
+}

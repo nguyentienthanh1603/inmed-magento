@@ -1,0 +1,43 @@
+@import "../bower_components/bootstrap/less/breadcrumbs.less";
+
+.breadcrumb_wrapper {
+  background-color: #d7dcf2;
+
+
+  .breadcrumb {
+//    background-color: @gray0;
+    background-color: #d7dcf2;
+    line-height: 24px;
+    padding: 4px 20px 4px 10px;
+    font-size: 13px;
+
+    li {
+      a {
+        color: @blue;
+        &:hover {
+          color: @gray5;
+          text-decoration: none;
+        }
+      }
+    }
+    > li {
+      display: inline-block;
+
+      + li:before {
+        content: "@{breadcrumb-separator}\00a0"; // Unicode space added since inline-block means non-collapsing white-space
+        padding: 0 5px;
+        color: @blue;
+      }
+    }
+
+    > .active {
+      color: @breadcrumb-active-color;
+    }
+
+
+  }
+}
+.breadcrumb strong {
+    font-weight: normal;
+    color: @gray4;
+}

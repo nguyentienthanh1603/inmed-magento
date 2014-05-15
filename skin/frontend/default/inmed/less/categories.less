@@ -1,0 +1,121 @@
+// .category-title { border:0; margin:0 0 7px; }
+// .category-image { width:100%; overflow:hidden; margin:0 0 10px; text-align:center; }
+// .category-image img {}
+// .category-description { margin:0 0 10px; }
+// .category-products {}
+
+.category-image img {
+    .img-responsive();
+}
+
+.category-description {
+    margin-bottom: (@line-height-computed / 2);
+}
+
+.category-products {
+    .toolbar {
+        margin-bottom: (@line-height-computed / 2);
+    }
+}
+
+.category-categories {
+
+  div[role="main"] {
+
+
+    .col-md-4 {
+      .category-landing-holder {
+
+        height: 210px;
+        overflow: hidden;
+        text-align: center;
+
+        .panel-body {
+          padding: 0;
+          img {
+            width: 100%;
+
+            padding-top: 55px;
+
+          }
+          p {
+            padding-top: 10px;
+          }
+        }
+
+        h3 {
+          a {
+            color: @white;
+
+            font-family: @fontPTSansNarrow;
+            font-size: 20px;
+            text-shadow: none;
+            line-height: 30px;
+
+
+          }
+          &:hover {
+            text-decoration: none;
+            h3 {
+//              color: @gray5;
+            }
+          }
+        }
+        &:hover {
+          border: 1px solid @blue;
+          cursor: pointer;
+          h3 {
+//            color: @gray5;
+          }
+        }
+
+
+      }
+      &.last-row{
+        margin-left: 33%;
+      }
+
+    }
+
+  }
+}
+
+
+  .category-image {
+    max-width: 140px;
+    padding-right: 10px;
+//    display: inline-block;
+  }
+  .category-description {
+    display: inline-block;
+    float: left;
+  }
+.category-description-td {
+  vertical-align: top;
+}
+
+.catalog-category-view {
+
+
+
+}
+
+.box-account.box-account-padding.block-related,
+.box-account.box-account-padding.block-categories {
+  padding: 15px 0 0;
+  ul.media-list.categories-list {
+    padding-top: 60px;
+    li.media {
+      padding: 0;
+      a {
+        line-height: 28px !important;
+        min-height: 28px !important;
+
+        .media-body {
+          padding-left: 15px;
+          min-height: 28px !important;
+        }
+      }
+    }
+  }
+}

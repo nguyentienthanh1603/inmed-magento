@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SGoodwin_AjaxClinicians>
+            <active>true</active>
+            <codePool>local</codePool>
+        </SGoodwin_AjaxClinicians>
+    </modules>
+</config>

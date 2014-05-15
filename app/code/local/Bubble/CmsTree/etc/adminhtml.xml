@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <cms translate="title" module="cms">
+            <title>CMS</title>
+            <sort_order>70</sort_order>
+            <children>
+                <page translate="title" module="cms">
+                    <title>Pages</title>
+                    <children>
+                        <content translate="title" module="cms">
+                            <title>Manage Content</title>
+                            <action>adminhtml/cms_page</action>
+                        </content>
+                        <permissions translate="title" module="cms">
+                            <title>Manage Permissions</title>
+                            <action>adminhtml/cms_page_permissions</action>
+                        </permissions>
+                    </children>
+                </page>
+                <block translate="title" module="cms">
+                    <title>Static Blocks</title>
+                    <action>adminhtml/cms_block</action>
+                    <sort_order>10</sort_order>
+                </block>
+            </children>
+        </cms>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <cms translate="title" module="cms">
+                        <children>
+                            <page translate="title">
+                                <title>Pages</title>
+                                <sort_order>0</sort_order>
+                                <children>
+                                    <content translate="title">
+                                        <title>Manage Content</title>
+                                        <sort_order>100</sort_order>
+                                    </content>
+                                    <permissions translate="title">
+                                        <title>Manage Permissions</title>
+                                        <sort_order>110</sort_order>
+                                    </permissions>
+                                </children>
+                            </page>
+                        </children>
+                    </cms>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <bubble_cmstree>
+                                        <title>Bubble CmsTree</title>
+                                    </bubble_cmstree>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

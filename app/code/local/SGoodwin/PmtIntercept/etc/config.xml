@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SGoodwin_PmtIntercept>
+            <version>0.1.0</version>
+        </SGoodwin_PmtIntercept>
+    </modules>
+    <frontend>
+        <events>
+
+            <customer_save_before>
+                <observers>
+                    <customer_save_before_handler>
+                        <type>singleton</type>
+                        <class>SGoodwin_PmtIntercept_Model_Observer</class>
+                        <method>customerSaveBefore</method>
+                    </customer_save_before_handler>
+                </observers>
+            </customer_save_before>
+
+            <customer_register_success>
+                <observers>
+                    <customer_register_success_handler>
+                        <type>singleton</type>
+                        <class>SGoodwin_PmtIntercept_Model_Observer</class>
+                        <method>customerRegisterSuccess</method>
+                    </customer_register_success_handler>
+                </observers>
+            </customer_register_success>
+
+            <customer_save_after>
+                <observers>
+                    <customer_save_after_handler>
+                        <type>singleton</type>
+                        <class>SGoodwin_PmtIntercept_Model_Observer</class>
+                        <method>customerSaveAfter</method>
+                    </customer_save_after_handler>
+                </observers>
+            </customer_save_after>
+
+
+            <checkout_onepage_controller_success_action>
+                <observers>
+                    <checkout_onepage_controller_success_action_handler>
+                        <type>singleton</type>
+                        <class>SGoodwin_PmtIntercept_Model_Observer</class>
+                        <method>checkoutOnepageControllerSuccessAction</method>
+                    </checkout_onepage_controller_success_action_handler>
+                </observers>
+            </checkout_onepage_controller_success_action>
+
+            <customer_login>
+                <observers>
+                    <customer_login_handler>
+                        <type>singleton</type>
+                        <class>SGoodwin_PmtIntercept_Model_Observer</class>
+                        <method>customerLogin</method>
+                    </customer_login_handler>
+                </observers>
+            </customer_login>
+
+            <checkout_type_onepage_save_order>
+                <observers>
+                    <checkout_type_onepage_save_order_handler>
+                        <type>singleton</type>
+                        <class>SGoodwin_PmtIntercept_Model_Observer</class>
+                        <method>checkoutTypeOnepageSaveOrder</method>
+                    </checkout_type_onepage_save_order_handler>
+                </observers>
+            </checkout_type_onepage_save_order>
+
+
+
+        </events>
+    </frontend>
+
+    <adminhtml>
+        <events>
+            <admin_customer_delete_before>
+                <observers>
+                    <admin_customer_delete_before_handler>
+                        <type>singleton</type>
+                        <class>SGoodwin_PmtIntercept_Model_Observer</class>
+                        <method>admin_customer_delete_before</method>
+                    </admin_customer_delete_before_handler>
+                </observers>
+            </admin_customer_delete_before>
+
+            <adminhtml_customer_save_after>
+                <observers>
+                    <adminhtml_customer_save_after_handler>
+                        <type>singleton</type>
+                        <class>SGoodwin_PmtIntercept_Model_Observer</class>
+                        <method>adminhtml_customer_save_after</method>
+                    </adminhtml_customer_save_after_handler>
+                </observers>
+            </adminhtml_customer_save_after>
+
+            <adminhtml_customer_prepare_save>
+                <observers>
+                    <adminhtml_customer_prepare_save_handler>
+                        <type>singleton</type>
+                        <class>SGoodwin_PmtIntercept_Model_Observer</class>
+                        <method>adminhtml_customer_prepare_save</method>
+                    </adminhtml_customer_prepare_save_handler>
+                </observers>
+            </adminhtml_customer_prepare_save>
+        </events>
+    </adminhtml>
+    <global>
+        <template>
+            <email>
+                <admin_error_template module="pmtintercept">
+                    <label>Admin Error</label>
+                    <file>pmtintercept/admin_error.html</file>
+                    <type>html</type>
+                </admin_error_template>
+
+                <admin_customer_clinician_submission_template module="pmtintercept">
+                    <label>Consumer requesting clinician join site.</label>
+                    <file>pmtintercept/customer_clinician_submission.html</file>
+                    <type>html</type>
+                </admin_customer_clinician_submission_template>
+
+                <admin_pmt_error_template module="pmtintercept">
+                    <label>Pmt Errors</label>
+                    <file>pmtintercept/pmt_error.html</file>
+                    <type>html</type>
+                </admin_pmt_error_template>
+
+                <!--<admin_pmt_update_error module="PmtIntercept">-->
+                    <!--<label>Pmt Update error.</label>-->
+                    <!--<file>pmtintercept_pmt_update_error.html</file>-->
+                    <!--<type>html</type>-->
+                <!--</admin_pmt_update_error>-->
+                <!--<admin_pmt_registration_login_error module="PmtIntercept">-->
+                    <!--<label>Pmt login error.</label>-->
+                    <!--<file>pmtintercept_pmt_registration_login_error.html</file>-->
+                    <!--<type>html</type>-->
+                <!--</admin_pmt_registration_login_error>-->
+                <admin_new_account_template module="pmtintercept">
+                    <label>New Account</label>
+                    <file>pmtintercept/admin_new_account.html</file>
+                    <type>html</type>
+                </admin_new_account_template>
+
+                <!-- General, CLinician and Resellers -->
+                <new_account_general_template module="pmtintercept">
+                    <label>PMT General New Account</label>
+                    <file>pmtintercept/account_new_general.html</file>
+                    <type>html</type>
+                </new_account_general_template>
+
+                <new_account_clinician_template module="pmtintercept">
+                    <label>PMT Clinician New Account</label>
+                    <file>pmtintercept/account_new_clinician.html</file>
+                    <type>html</type>
+                </new_account_clinician_template>
+
+                <new_account_clinician_credit_template module="pmtintercept">
+                    <label>PMT Clinician Account Credit New Account</label>
+                    <file>pmtintercept/account_new_clinician_credit.html</file>
+                    <type>html</type>
+                </new_account_clinician_credit_template>
+            </email>
+        </template>
+        <helpers>
+            <pmtintercept>
+                <class>SGoodwin_PmtIntercept_Helper</class>
+            </pmtintercept>
+        </helpers>
+        <blocks>
+            <pmtintercept>
+                <class>SGoodwin_PmtIntercept_Block</class>
+            </pmtintercept>
+        </blocks>
+    </global>
+
+</config>

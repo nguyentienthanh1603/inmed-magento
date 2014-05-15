@@ -1,0 +1,19 @@
+<div>
+    <h3>{{config path='general/store_information/name'}}</h3>
+    <h2>{{var message}}</h2>
+    <p>Importance: {{var level}}</p>
+    <p>Clinician details:<br />
+        ID: {{ var customer.id }}<br />
+        Name: {{var customer.firstname }} {{var customer.lastname }}<br />
+        Email: {{var customer.email }}<br />
+        Date/Time: {{var date_time}}
+    </p>
+    <p>&nbsp</p>
+    <p>Apply for account credit?: {{var account_apply_credit}}<br />
+        Limit request: {{var account_request_limit}}<br />
+        Years in business: {{var account_years_in_business}}<br />
+        Social Security / EIN: {{var account_social_security_ein}}<br />
+        Ever applied for bankruptcy?: {{var account_bankruptcy}}
+    </p>
+
+</div>

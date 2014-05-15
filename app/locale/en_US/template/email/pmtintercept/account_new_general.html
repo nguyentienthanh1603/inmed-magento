@@ -1,0 +1,222 @@
+<!--@subject Welcome, {{var customer.name}}! @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"htmlescape var=$customer.name":"Customer Name",
+"store url=\"customer/account/\"":"Customer Account Url",
+"var customer.email":"Customer Email",
+"htmlescape var=$customer.password":"Customer Password"}
+@-->
+
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+        <style>
+            body {
+
+            }
+            .sitemaplinks a, .sitemaplinks p {
+                color: #fff;
+                text-decoration: none;
+                font-size: 11px;
+            }
+            .sitemaplinks h3 a {
+                color: #fff;
+                text-transform: uppercase;
+                line-height: 16px;
+            }
+            .sitemaplinks h3 {
+                color: #fff;
+                text-decoration: none;
+                font-size: 11px;
+                text-transform: uppercase;
+                padding: 0;
+                margin: 0;
+            }
+            .sitemaplinks ul {
+                list-style-type: none;
+                padding-left: 0;
+                margin-left: 0;
+                padding-top: 0;
+                margin-top: 0;
+            }
+            .sitemaplinks li{
+                list-style-type: none;
+                padding-left: 0;
+                margin-left: 0;
+            }
+        </style>
+<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<div style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<table cellspacing="0" cellpadding="0" border="0" height="100%" width="100%">
+        <tr>
+            <td align="center" valign="top" style="padding:20px 0 20px 0">
+                <!-- [ header starts here] -->
+                <table bgcolor="FFFFFF" cellspacing="0" cellpadding="0" border="0" width="650" style="border:2px solid #142e9d;">
+                    <tr>
+                        <td style="border-bottom: 4px solid #142e9d">
+                            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                                <tr>
+                                    <td valign="top">
+                                        <a href="{{store url=""}}">
+                                            <img src="{{var logo_url}}" alt="{{var logo_alt}}" style="margin-bottom:0px;" border="0"/>
+                                        </a>
+                                    </td>
+                                    <td style="text-align: right; padding-right: 10px; line-height: 60px">
+                                        <a href="{{store url="customer/account/login"}}">
+                                            sign into your account
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td style="width: 160px;">
+                                        <img src="{{store url=""}}media/email/rx.jpg" style="width: 140px;" >
+                                    </td>
+                                    <td style="text-align: center; padding: 10px 0;">
+                                        <h2>NEW REGISTRATION</h2>
+                                        <p style="font-size: 16px; line-height: 24px;">
+                                            Congratulations {{htmlescape var=$customer.name}}, you have successfully registered at {{config path='general/store_information/name'}}.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                <!-- [ middle starts here] -->
+                    <tr>
+                        <td valign="top" style="padding: 10px;">
+                            <p style="font-size:12px; line-height:16px; margin:0 0 16px 0;">At InMed Technologies LLC (IMT), we endeavour to deliver superior, efficacious and novel nutritionals formulated to suppoer better patient outcomes in clinicial practice.</p>
+                            <p style="font-size:12px; line-height:16px; margin:0 0 16px 0;">To log in when visiting our site just click <a href="{{store url="customer/account/"}}" style="color:#1E7EC8;">Login</a> or <a href="{{store url="customer/account/"}}" style="color:#1E7EC8;">My Account</a> at the top of every page, and then enter your e-mail address and password.</p>
+                            <p style="border:1px solid #E0E0E0; font-size:12px; line-height:16px; margin:0; padding:13px 18px; background:#f9f9f9;">
+                                Use the following values when prompted to log in:<br/>
+                                <strong>E-mail</strong>: {{var customer.email}}<br/>
+                                <strong>Password</strong>: {{htmlescape var=$customer.password}}<p>
+                            <p style="font-size:12px; line-height:16px; margin:0 0 8px 0;">When you log in to your account, you will be able to do the following:</p>
+                            <ul style="font-size:12px; line-height:16px; margin:0 0 16px 0; padding:0;">
+                                <li style="list-style:none inside; padding:0 0 0 10px;">&ndash; Proceed through checkout faster when making a purchase</li>
+                                <li style="list-style:none inside; padding:0 0 0 10px;">&ndash; Check the status of orders</li>
+                                <li style="list-style:none inside; padding:0 0 0 10px;">&ndash; View past orders</li>
+                                <li style="list-style:none inside; padding:0 0 0 10px;">&ndash; Make changes to your account information</li>
+                                <li style="list-style:none inside; padding:0 0 0 10px;">&ndash; Change your password</li>
+                                <li style="list-style:none inside; padding:0 0 0 10px;">&ndash; Store alternative addresses (for shipping to multiple family members and friends!)</li>
+                            </ul>
+                            <p style="font-size:12px; line-height:16px; margin:0;">If you have any questions about your account or any other matter, please do not hesitate to contact us at <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8; font-weight: bold;">{{config path='trans_email/ident_support/email'}}</a> or by phone at <strong>{{config path='general/store_information/phone'}}</strong>.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#EAEAEA" align="center" style="background:#EAEAEA; text-align:center; line-height: 30px;">
+                            <p style="font-size:12px; margin:0;">
+                                Thank you again, <strong>{{config path='general/store_information/name'}}</strong>
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="background-color: #142e9d; padding: 10px;">
+
+                            <table class="sitemaplinks">
+                                <tr>
+                                    <td valign="top" style="width: 160px; valign:top; font-size: 13px; color: #ffffff;">
+                                        <h3><a href="{{store url=""}}products">Products</a></h3>
+                                        <ul>
+                                            <li><a href="ingredients">View by Ingredient</a></li>
+                                            <li><a href="{{store url=""}}categories">View by Categories</a></li>
+                                        </ul>
+                                        <h3><a href="{{store url=""}}order-information">Ordering</a></h3>
+                                        <ul>
+                                            <li><a href="{{store url=""}}order-information/shipping-delivery">Shipping & Delivery</a></li>
+                                            <li><a href="{{store url=""}}order-information/my-account-orders">My Account & Orders</a></li>
+                                            <li><a href="{{store url=""}}order-information/terms-of-sale">Terms Of Sale</a></li>
+                                            <li><a href="{{store url=""}}order-information/payments">Payments, Pricing & Promotions</a></li>
+                                        </ul>
+
+                                    </td>
+                                    <td valign="top" style="width: 160px; valign:top; font-size: 13px; color: #ffffff;">
+                                        <h3><a href="{{store url=""}}im-listening">IM Listening</a></h3>
+                                        <ul>
+                                            <li><a href="{{store url=""}}im-listening/stories">Stories</a></li>
+                                            <li><a href="{{store url=""}}im-listeing/interviews">Interviews</a></li>
+                                            <li><a href="{{store url=""}}im-listening/media">Media</a></li>
+                                            <li><a href="{{store url=""}}im-listening/contributors">Contributors</a></li>
+                                            <li><a href="{{store url=""}}im-listening/subscribe">Subscribe</a></li>
+                                        </ul>
+                                        <h3><a href="{{store url=""}}consumer">Consumer</a></h3>
+                                        <ul>
+                                            <li><a href="{{store url=""}}consumer/multimedia">Multimedia</a></li>
+                                        </ul>
+
+                                    </td>
+                                    <td valign="top" style="width: 160px; valign:top; font-size: 13px; color: #ffffff;">
+                                        <h3><a href="{{store url=""}}inmed-difference">InMed Difference</a></h3>
+                                        <ul>
+                                            <li><a href="{{store url=""}}inmed-difference/research">Research</a></li>
+                                            <li><a href="{{store url=""}}inmed-difference/patents">Patents</a></li>
+                                            <li><a href="{{store url=""}}inmed-difference/affiliations">Affiliations</a></li>
+                                            <li><a href="{{store url=""}}inmed-difference/patient-management-tool">Patient Management Tool</a></li>
+                                            <li><a href="{{store url=""}}inmed-difference/order-stocking">Ordering &amp; Stocking</a></li>
+                                        </ul>
+                                        <h3><a href="{{store url=""}}clinicians">Clinicians</a></h3>
+                                        <ul>
+                                            <li><a href="{{store url=""}}clinicians/events">Events</a></li>
+                                            <li><a href="{{store url=""}}clinicians/patient-management">Patient Management</a></li>
+                                            <li><a href="{{store url=""}}clinicians/multimedia">Multimedia</a></li>
+                                        </ul>
+                                    </td>
+
+
+                                    <td valign="top" style="width: 160px; valign:top; font-size: 13px; color: #ffffff;">
+                                        <h3><a href="{{store url=""}}about">About Us</a></h3>
+                                        <ul>
+                                            <li><a href="{{store url=""}}about/our-company">Our Company</a></li>
+                                            <li><a href="{{store url=""}}about/scientific-team">Scientific Team</a></li>
+                                            <li><a href="{{store url=""}}about/management-team">Management Team</a></li>
+                                            <li><a href="{{store url=""}}about/company-culture">Company Culture</a></li>
+                                            <li><a href="http://www.medlab.co" target="blank">MedLab</a></li>
+                                            <li><a href="{{store url=""}}about/privacy-policy">Privacy Policy</a></li>
+                                            <li><a href="{{store url=""}}about/terms-conditions">Terms &amp; Conditions</a></li>
+                                        </ul>
+
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="background-color: #232323; color: #fff">
+
+                            <table class="sitemaplinks">
+                                <tr>
+                                    <td style="width: 50%; padding: 10px;">
+                                        <h3>Contact Us</h3>
+                                        <p>
+                                            {{config path='general/store_information/address'}}<br />
+                                            <label>Phone: </label> {{config path='general/store_information/phone'}}<br />
+                                            <label>Email: </label> <a href="mailto:{{config path='trans_email/ident_support/email'}}">{{config path='trans_email/ident_support/email'}}</a>
+                                        </p>
+                                    </td>
+                                    <td style="width: 50%; padding: 10px;">
+                                        <h3>Disclaimer</h3>
+                                        <p>These statements have not been evaluated by the Food and Drug Administration.<br /> These products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+
+
+
+        </tr>
+    </table>
+</div>
+</body>

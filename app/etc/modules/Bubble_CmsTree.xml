@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Bubble_CmsTree>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Adminhtml/>
+                <Mage_Catalog/>
+                <Mage_Cms/>
+            </depends>
+        </Bubble_CmsTree>
+    </modules>
+</config>

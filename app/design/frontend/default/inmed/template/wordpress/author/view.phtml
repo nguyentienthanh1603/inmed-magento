@@ -1,0 +1,23 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php $author = $this->getAuthor() ?>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Articles by: <?php echo $this->escapeHtml($author->getDisplayName()) ?></h3>
+	</div>
+	<?php if ($author->getMetaValue('description')): ?>
+	<div class="panel-body">
+		<p class="author-description"><?php echo $this->escapeHtml($author->getMetaValue('description')) ?></p>
+	</div>
+	<?php endif; ?>
+</div>
+<?php echo $this->getPostListHtml() ?>
+
+

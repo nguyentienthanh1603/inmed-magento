@@ -1,0 +1,218 @@
+<?php
+/**
+ * Webtex
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Webtex EULA that is bundled with
+ * this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.webtex.com/LICENSE-1.0.html
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@webtex.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension
+ * for your needs please refer to http://www.webtex.com/ for more information
+ * or send an email to sales@webtex.com
+ *
+ * @category   Webtex
+ * @package    Webtex_CustomerPrices
+ * @copyright  Copyright (c) 2010 Webtex (http://www.webtex.com/)
+ * @license    http://www.webtex.com/LICENSE-1.0.html
+ */
+
+/**
+ * Customer Prices extension
+ *
+ * @category   Webtex
+ * @package    Webtex_CustomerPrices
+ * @author     Webtex Dev Team <dev@webtex.com>
+ */
+?>
+
+<?php
+$_htmlId        = "customerprices";
+$_htmlClass     = "input-text";
+$_htmlName      = 'customerprices';
+$isShowWebsiteColumn = true; 
+$isAllowChangeWebsite = $this->allowChangeWebsite();
+$_showWebsite   = true;
+$_readonly = false;
+?>
+<fieldset>
+
+    <table cellspacing="0" class="grid data" id="customerprices_table">
+        <?php if ($_showWebsite): ?>
+        <col width="150" />
+        <?php endif; ?>
+        <col width="20" />
+        <col width="200" />
+        <col width="120" />
+        <col width="120" />
+        <col width="120" />
+        <col width="10" />
+        <thead>
+            <tr class="headings">
+                <th <?php if (!$_showWebsite): ?>style="display:none"<?php endif; ?>><?php echo Mage::helper('sales')->__('Website') ?></th>
+                <th><?php echo Mage::helper('catalog')->__('Customer ID') ?></th>
+                <th><?php echo Mage::helper('catalog')->__('Customer Email') ?></th>
+                <th><?php echo Mage::helper('catalog')->__('Price') ?></th>
+                <th><?php echo Mage::helper('catalog')->__('Special Price') ?></th>
+                <th><?php echo Mage::helper('catalog')->__('Qty') ?></th>
+                <th class="last"><?php echo Mage::helper('catalog')->__('Action') ?></th>
+            </tr>
+        </thead>
+        <tbody id="<?php echo $_htmlId ?>_container"></tbody>
+        <tfoot>
+            <tr>
+                <td <?php if (!$_showWebsite): ?>style="display:none"<?php endif; ?>></td>
+                <td colspan="5" class="a-right"><?php echo $this->getAddButtonHtml() ?></td>
+            </tr>
+        </tfoot>
+    </table>
+
+</fieldset>
+
+<script type="text/javascript">
+//<![CDATA[
+var customerPriceRowTemplate = '<tr>'
+    + '<td<?php if (!$_showWebsite): ?> style="display:none"<?php endif; ?>>'
+    + '<select class="<?php echo $_htmlClass ?> required-entry" name="<?php echo $_htmlName ?>[{{index}}][website_id]" id="customer_price_row_{{index}}_website">'
+    <?php foreach ($this->getWebsites() as $_websiteId => $_info): ?>
+    + '<option value="<?php echo $_websiteId ?>"><?php echo $this->htmlEscape($_info['name']) ?><?php if (!empty($_info['currency'])): ?> [<?php echo $this->htmlEscape($_info['currency']) ?>]<?php endif; ?></option>'
+    <?php endforeach ?>
+    + '</select></td>'
+    + '<td><input class="<?php echo $_htmlClass ?> customers required-entry" type="text" name="<?php echo $_htmlName ?>[{{index}}][customerId]" id="customer_price_row_{{index}}_cust_id" /></td>'
+    + '<td><input class="<?php echo $_htmlClass ?> customers required-entry" type="text" name="<?php echo $_htmlName ?>[{{index}}][email]" id="customer_price_row_{{index}}_cust_email" /></td>'
+    + '<td><input class="<?php echo $_htmlClass ?> " type="text" name="<?php echo $_htmlName ?>[{{index}}][price]" value="{{price}}" id="customer_price_row_{{index}}_price" /></td>'
+    + '<td><input class="<?php echo $_htmlClass ?> " type="text" name="<?php echo $_htmlName ?>[{{index}}][specialprice]" value="{{specialprice}}" id="customer_price_row_{{index}}_specialprice" /></td>'
+    + '<td><input class="<?php echo $_htmlClass ?> " type="text" name="<?php echo $_htmlName ?>[{{index}}][qty]" value="{{qty}}" id="customer_price_row_{{index}}_qty" style="width:20px;"/> and above </td>'
+    + '<td class="last"><input type="hidden" name="<?php echo $_htmlName ?>[{{index}}][delete]" class="delete" value="" id="customer_price_row_{{index}}_delete" />'
+    + '<button title="<?php echo Mage::helper("catalog")->__("Delete") ?>" type="button" class="scalable delete icon-btn delete-product-option" id="customer_price_row_{{index}}_delete_button" onclick="return customerPriceControl.deleteItem(event);">'
+    + '<span><?php echo Mage::helper("catalog")->__("Delete") ?></span></button></td>'
+    + '</tr>';
+
+var customerPriceControl = {
+    template: new Template(customerPriceRowTemplate, new RegExp('(^|.|\\r|\\n)({{\\s*(\\w+)\\s*}})',"")),
+    itemsCount: 0,
+
+    showCustomerGrid: function() {
+        $('customerprices-container-grid').show();
+    },
+
+    customerGridAddSelected: function() {
+        var rows = $('customerPricesCustomerSearchGrid_table').select('tbody')[0];
+        rows.childElements().each(function (row){
+             if(row.cells[4].children[0].checked){
+                if(Prototype.Browser.IE) {
+                    customerPriceControl.addItem(0,row.cells[0].innerText,row.cells[2].innerText,'','',1);
+                } else {
+                    customerPriceControl.addItem(0,row.cells[0].textContent,row.cells[2].textContent,'','',1);
+                }
+             }
+        });
+        $('customerprices-container-grid').hide();
+    },
+
+    addItem : function() {
+        <?php if ($_readonly): ?>
+        if (arguments.length < 5) {
+            return;
+        }
+        <?php endif; ?>
+        var data = {
+            website_id: '<?php echo $this->getDefaultWebsite() ?>',
+            customer_id: '',
+            email: '',
+            price: '',
+            specialprice: '',
+            qty: '1',
+            readOnly: false,
+            index: this.itemsCount++
+        };
+
+        if(arguments.length >= 6) {
+            data.website_id   = arguments[0];
+            data.customer_id  = arguments[1];
+            data.email        = arguments[2];
+            data.price        = arguments[3];
+            data.specialprice = arguments[4];
+            data.qty          = arguments[5];
+        }
+        
+        if (arguments.length == 7) {
+            data.readOnly = arguments[6];
+        }
+
+        Element.insert($('<?php echo $_htmlId ?>_container'), {
+            bottom : this.template.evaluate(data)
+        });
+
+        $('customer_price_row_' + data.index + '_cust_id').value = data.customer_id;
+        $('customer_price_row_' + data.index + '_cust_email').value = data.email;
+        $('customer_price_row_' + data.index + '_website').value    = data.website_id;
+
+        var wss = $('customer_price_row_' + data.index + '_cust_id');
+        var txt = data.customer_id;
+        wss.insert({after:'<span class="website-name">' + txt + '</span>'});
+        wss.hide();
+
+        var wss = $('customer_price_row_' + data.index + '_cust_email');
+        var txt = data.email;
+
+        wss.insert({after:'<span class="website-name">' + txt + '</span>'});
+        wss.hide();
+
+        <?php if ($isShowWebsiteColumn && !$isAllowChangeWebsite):?>
+            var wss = $('customer_price_row_' + data.index + '_website');
+            var txt = wss.options[wss.selectedIndex].text;
+
+            wss.insert({after:'<span class="website-name">' + txt + '</span>'});
+            wss.hide();
+        <?php endif;?>
+
+        if (data.readOnly == '1') {
+            ['website', 'cust_id', 'cust_email', 'price', 'specialprice', 'qty','delete'].each(function(idx){
+                $('customer_price_row_'+data.index+'_'+idx).disabled = true;
+            });
+            $('customer_price_row_'+data.index+'_delete_button').hide();
+        }
+
+        <?php if ($_readonly): ?>
+            $('<?php echo $_htmlId ?>_container').select('input', 'select').each(this.disableElement);
+            $('<?php echo $_htmlId ?>_container').up('table').select('button').each(this.disableElement);
+        <?php else: ?>
+            $('<?php echo $_htmlId ?>_container').select('input', 'select').each(function(el){ Event.observe(el, 'change', el.setHasChanges.bind(el)); });
+        <?php endif; ?>
+    },
+    
+    disableElement: function(el) {
+        el.disabled = true;
+        el.addClassName('disabled');
+    },
+    
+    deleteItem: function(event) {
+        var tr = Event.findElement(event, 'tr');
+        if (tr) {
+            Element.select(tr, '.delete').each(function(elem){elem.value='1'});
+            Element.select(tr, ['input', 'select']).each(function(elem){elem.hide()});
+            Element.hide(tr);
+            Element.addClassName(tr, 'no-display template');
+        }
+        return false;
+    }
+};
+
+<?php if($this->getValues()) : ?>
+<?php foreach($this->getValues() as $_item) { ?>
+customerPriceControl.addItem('<?php echo $_item->getStoreId(); ?>','<?php echo $_item->getCustomerId(); ?>','<?php echo $_item->getCustomerEmail(); ?>','<?php echo sprintf('%.2f',$_item->getPrice()); ?>','<?php echo sprintf('%.2f',$_item->getSpecialPrice()); ?>','<?php echo $_item->getQty(); ?>');
+<?php }?>
+<?php endif; ?>
+//]]>
+</script>
+

@@ -1,0 +1,123 @@
+
+<?php
+
+$letters = range('A', 'Z');
+
+?>
+
+<ul class="pagination products-listing">
+	<?php
+	foreach ($letters AS $let)
+	{
+
+		if ( in_array($let, $activeAlpha))
+		{
+			?>
+			<li class='<?php if ($query == $let) { echo 'active'; }	?>'>
+				<a href='<?php echo $this->getSiteUrl()."?q=".$let; ?>'>
+					<?php echo $let; ?>
+				</a>
+			</li>
+			<?php
+		}
+		else
+		{
+			?>
+			<li>
+				<a class='disabled'>
+					<?php echo $let; ?>
+				</a>
+			</li>
+		<?php
+		}
+	}
+
+	?>
+	<li <?php
+	if ($query == 'ALL')
+	{
+		echo 'class="active"';
+	}
+	?>>
+		<a href="<?php echo $this->getSiteUrl()."?q=all";?>">
+			Show All
+		</a>
+	</li>
+</ul>
+
+
+
+<div class="box-account box-account-padding">
+
+	<h3 class="float-left">Products</h3>
+
+	<div class="box-content productsearch">
+
+<?php
+
+if ( count($data) )
+{
+
+		foreach ( $data AS $d )
+		{
+			?>
+			<div class="media">
+
+				<table>
+					<tr>
+
+						<td class="product-list-image">
+							<a href="<?php echo $d->getProductUrl(); ?>">
+								<img class="media-object" src="<?php echo $this->helper('catalog/image')->init($d, 'image')->resize(120, 120) ?>" alt="<?php echo $d->getNameFrontend() ?: $d->getName();?>">
+							</a>
+						</td>
+
+						<td class="product-list-details">
+							<a href="<?php echo $d->getProductUrl(); ?>">
+								<h4 class="media-heading"><?php echo $d->getNameFrontend() ?: $d->getName();?></h4>
+							</a>
+							<div class="media-description">
+								<?php echo $d->getShortDescription();?>
+							</div>
+						</td>
+
+						<td class="product-list-price">
+							<?php
+							$product_block = new Mage_Catalog_Block_Product;
+							?>
+								<?php echo $product_block->getPriceHtml($d); ?>
+
+								<button class="btn btn-cart btn-sm" type="button" title="<?php echo $this->__('Add to Cart') ?>" onclick="setLocation('<?php echo Mage::helper('checkout/cart')->getAddUrl($d); ?>')">
+									<i class="fa fa-plus"></i> <?php echo $this->__('Add to Cart') ?>
+								</button>
+								<a href="<?php echo $d->getProductUrl(); ?>" class="btn btn-info btn-sm">
+									Learn More
+								</a>
+							<?php
+							unset($product_block);
+							?>
+						</td>
+
+					</tr>
+
+
+				</table>
+
+				<div class="clearfix"></div>
+
+			</div>
+			<hr />
+			<?php
+		}
+		?>
+
+	<?php
+}
+else
+{
+	?><div class="alert alert-warning">There are no products that match.</div><?php
+}
+
+?>
+		</div>
+	</div>

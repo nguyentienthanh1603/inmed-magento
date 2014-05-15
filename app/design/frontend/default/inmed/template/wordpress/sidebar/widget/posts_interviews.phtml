@@ -1,0 +1,56 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+
+<?php $posts = $this->getPosts() ?>
+<?php if (count($posts) > 0): ?>
+<div class="box-account box-account-padding block-interviews">
+	<h3 class="float-left">Interviews</h3>
+		<ul class="media-list">
+
+			<?php
+			$cnt = 1;
+			foreach($posts as $post)
+			{
+				?>
+				<li class="media<?php if ( $cnt == 1 ){ ?> first<?php } ?>">
+					<a href="<?php echo $post->getPermalink() ?>">
+						<?php if ($featuredImage = $post->getFeaturedImage() && $cnt == 1): ?>
+
+							<img  class="pull-left" class="media-object" src="<?php echo $featuredImage->getAvailableImage() ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"/>
+
+						<?php endif; ?>
+
+						<div class="media-body">
+							<h4 class="media-heading">
+								<?php echo $this->htmlEscape($post->getPostTitle()) ?>
+								<span class="date"><?php echo $post->getPostDate(); ?></span>
+							</h4>
+							<?php
+							if ( $cnt == 1 )
+							{
+								echo $post->getPostExcerpt();
+							}
+							?>
+						</div>
+					</a>
+				</li>
+			<?php
+				$cnt++;
+			}
+			?>
+			<li class="media">
+				<a class="last" href="<?php echo Mage::getBaseUrl(); ?>im-listening/media">
+					More Interviews <span class="meta-nav">→</span>
+				</a>
+			</li>
+
+		</ul>
+</div>
+
+<?php endif; ?>

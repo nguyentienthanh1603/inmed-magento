@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SGoodwin_CmsImage>
+            <version>0.1.0</version>
+        </SGoodwin_CmsImage>
+    </modules>
+    <global>
+        <models>
+            <sgoodwin_cmsimage>
+                <class>SGoodwin_CmsImage_Model</class>
+            </sgoodwin_cmsimage>
+        </models>
+        <events>
+            <adminhtml_cms_page_edit_tab_content_prepare_form>
+                <observers>
+                    <sgoodwin_cmsimage_page_edit_tab_content>
+                        <type>singleton</type>
+                        <class>SGoodwin_CmsImage_Model_Observer</class>
+                        <method>cmsImageField</method>
+                    </sgoodwin_cmsimage_page_edit_tab_content>
+                </observers>
+            </adminhtml_cms_page_edit_tab_content_prepare_form>
+        </events>
+    </global>
+</config>

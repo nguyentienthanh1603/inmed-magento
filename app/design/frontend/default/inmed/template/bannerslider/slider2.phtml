@@ -1,0 +1,74 @@
+<?php
+$block_data = $this->getBlockData();
+$blocks = $block_data['block'];
+$banners = $block_data['banners'];
+$click_url = $this->getUrl('bannerslider/index/click');
+?>
+
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+	<ol class="carousel-indicators">
+		<?php
+		$cnt = 0;
+		foreach ($banners as $banner)
+		{
+		?>
+		<li data-target="#carousel-example-generic" data-slide-to="<?php echo $cnt ?>" class="active"></li>
+			<?php
+			$cnt++;
+		}
+		?>
+	</ol>
+	<div class="carousel-inner">
+
+		<?php
+		$cnt = 0;
+		foreach ($banners as $banner)
+		{
+		?>
+		<div class="item <?php echo ($cnt == 0) ? 'active' : '';?>">
+			<img src="<?php echo $this->getBannerImage($banner['image']); ?>" width="100%" alt="First slide">
+			<div class="carousel-caption">
+
+			</div>
+		</div>
+		<?php
+			$cnt++;
+		}
+		?>
+<!--		<div class="item">-->
+<!--			<img data-src="holder.js/900x500/auto/#666:#444/text:Second slide" alt="Second slide">-->
+<!--		</div>-->
+
+	</div>
+	<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+		<span class="glyphicon glyphicon-chevron-left"></span>
+	</a>
+	<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+		<span class="glyphicon glyphicon-chevron-right"></span>
+	</a>
+</div>
+
+<script type="text/javascript">
+
+	var car = jQuery.noConflict();
+
+	car(document).ready(function($) {
+
+		car('.carousel').carousel({
+			interval: 9000 // in milliseconds
+		})
+	});
+
+	function bannerClicks(id_banner,id_slider){
+		click_url = '<?php echo $click_url;?>';
+		banner_id = id_banner;
+		new Ajax.Request(click_url,{
+			method: 'post',
+			parameters:{id_banner: banner_id, slider_id:id_slider},
+			onFailure: '',
+			onSuccess: ''
+
+		});
+
+	}
+</script>

@@ -1,0 +1,269 @@
+<?php /**
+ * Create account form template */
+/* @var $this Magestore_Customerattribute_Block_Customer_Form */
+?>
+<div class="additional-attributes panel-group" id="">
+<?php
+if ($this->hasUserDefinedAttributes())
+{
+	$countAttribute=1;
+
+	$groups = ['linician' => 'Clinician Information', 'onsumer' => 'Consumer Information'];
+
+	foreach ($this->getUserDefinedAttributes() as $attribute)
+	{
+//			echo $attribute->getAttributeCode() . ' - ';
+//			echo $attribute->getFrontendInput() . " - ";
+//			echo $attribute->getStoreLabel() . " - <br />";
+
+		$attr[$attribute->getAttributeCode()] = [
+			'name'   => $attribute->getStoreLabel(),
+			'input'  => $attribute->getFrontendInput(),
+			'data'   => $attribute
+		];
+	}
+}
+
+$user = Mage::getSingleton('customer/session')->getCustomer();
+
+?>
+
+<!-- clinician specialities information -->
+	<div class="box-account box-account-padding Avatar">
+		<h3 class="float-left">Avatar</h3>
+
+		<div  class="box-content">
+
+			<ul class="form-list">
+				<li class="fields">
+					<?php
+					$attributeContent = $this->getAttributeHtml($attr['avatar']['data']);
+					echo $attributeContent;
+					?>
+				</li>
+
+			</ul>
+		</div>
+
+</div>
+<!-- end clinician specialities information -->
+<?php
+if ( $user->getGroupId() > 1)
+{
+?>
+
+<!-- clinician specialities information -->
+<?php
+if ( isset($attr['clinician_specialities'])
+	&& isset($attr['clinician_specialities_other'])
+	&& isset($attr['clinician_type'])
+	&& isset($attr['clinician_rego_number'])
+	&& isset($attr['clinician_profile']))
+{
+	?>
+<div class="box-account box-account-padding clinician-specialities">
+	<h3 class="float-left">Specialities</h3>
+
+	<div  class="box-content">
+			<ul class="form-list">
+				<li class="fields">
+					<?php
+					$attributeContent = $this->getAttributeHtml($attr['clinician_specialities']['data']);
+					echo $attributeContent;
+
+					$attributeContent = $this->getAttributeHtml($attr['clinician_specialities_other']['data']);
+					echo $attributeContent;
+					?>
+				</li>
+				<li class="fields">
+					<?php
+					$attributeContent = $this->getAttributeHtml($attr['clinician_type']['data']);
+					echo $attributeContent;
+
+					?>
+				</li>
+				<li class="fields">
+					<?php
+					$attributeContent = $this->getAttributeHtml($attr['clinician_rego_number']['data']);
+					echo $attributeContent;
+
+					$attributeContent = $this->getAttributeHtml($attr['clinician_profile']['data']);
+					echo $attributeContent;
+					?>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+
+<?php
+}
+	?>
+<!-- end clinician specialities information -->
+
+
+
+<!-- clinician school information -->
+<?php
+if ( isset($attr['clinician_school_graduated'])
+	&& isset($attr['clinician_school_year']))
+{
+	?>
+	<div class="box-account box-account-padding clinician-school">
+		<h3 class="float-left"> School Information </h3>
+
+		<div  class="box-content">
+			<ul class="form-list">
+				<li class="fields">
+					<?php
+					$attributeContent = $this->getAttributeHtml($attr['clinician_school_graduated']['data']);
+					echo $attributeContent;
+
+					$attributeContent = $this->getAttributeHtml($attr['clinician_school_year']['data']);
+					echo $attributeContent;
+					?>
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+<?php
+}
+	?>
+<!-- end clinician school information -->
+
+
+<!-- clinician social information -->
+<?php
+if ( isset($attr['facebook'])
+	&& isset($attr['twitter'])
+	&& isset($attr['linkedin'])
+	&& isset($attr['googleplus'])
+	&& isset($attr['youtube']))
+{
+	?>
+	<div class="box-account box-account-padding clinician-social">
+		<h3 class="float-left"> Social Information </h3>
+
+		<div  class="box-content">
+
+			<ul class="form-list">
+				<li class="fields">
+					<?php
+					$attributeContent = $this->getAttributeHtml($attr['facebook']['data']);
+					echo $attributeContent;
+
+					$attributeContent = $this->getAttributeHtml($attr['twitter']['data']);
+					echo $attributeContent;
+					?>
+				</li>
+				<li class="fields">
+					<?php
+					$attributeContent = $this->getAttributeHtml($attr['linkedin']['data']);
+					echo $attributeContent;
+
+					$attributeContent = $this->getAttributeHtml($attr['googleplus']['data']);
+					echo $attributeContent;
+					?>
+				</li>
+				<li class="fields">
+					<?php
+					$attributeContent = $this->getAttributeHtml($attr['youtube']['data']);
+					echo $attributeContent;
+					?>
+				</li>
+			</ul>
+		</div>
+
+</div>
+<?php
+}
+	?>
+<!-- end clinician social information -->
+
+
+<?php
+
+}
+
+if ( $user->getGroupId() == 1)
+{
+?>
+<!-- consumer clinician information -->
+<?php
+if ( isset($attr['consumer_pref_type'])
+	&& isset($attr['consumer_pref_special']) )
+{
+	?>
+<div class="box-account box-account-padding consumer-pref">
+	<h3 class="float-left"> Clinician Preferences </h3>
+
+	<div  class="box-content">
+				<ul class="form-list">
+					<li class="fields">
+						<?php
+						$attributeContent = $this->getAttributeHtml($attr['consumer_pref_type']['data']);
+						echo $attributeContent;
+
+						$attributeContent = $this->getAttributeHtml($attr['consumer_pref_special']['data']);
+						echo $attributeContent;
+						?>
+					</li>
+					<li class="fields">
+
+					</li>
+				</ul>
+			</div>
+
+</div>
+<?php
+}
+	?>
+
+	<!-- consumer find clinician -->
+	<div class="box-account box-account-padding consumer_clinician">
+		<h3 class="float-left">Your Clinician </h3>
+		<div  class="box-content">
+
+			Show the selected Clinician Group Here
+		</div>
+	</div>
+	<!-- end consumer find clinician -->
+
+
+<!-- consumer clinician information -->
+<?php
+if ( isset($attr['consumer_interest'])
+	&& isset($attr['consumer_language']) )
+{
+	?>
+<div class="box-account box-account-padding consumer_optional">
+	<h3 class="float-left"> Optional Information </h3>
+	<div  class="box-content">
+				<ul class="form-list">
+					<li class="fields">
+						<?php
+						$attributeContent = $this->getAttributeHtml($attr['consumer_interest']['data']);
+						echo $attributeContent;
+
+						$attributeContent = $this->getAttributeHtml($attr['consumer_language']['data']);
+						echo $attributeContent;
+						?>
+					</li>
+					<li class="fields">
+
+					</li>
+				</ul>
+	</div>
+</div>
+<?php
+}
+	?>
+<!-- end consumer clinician information -->
+
+
+<?php
+}
+?>
+</div>

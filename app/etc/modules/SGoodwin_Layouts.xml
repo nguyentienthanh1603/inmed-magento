@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SGoodwin_Layouts>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Page />
+            </depends>
+        </SGoodwin_Layouts>
+    </modules>
+</config>

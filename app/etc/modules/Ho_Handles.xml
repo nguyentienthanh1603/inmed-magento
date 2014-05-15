@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Ho_Handles>
+            <active>false</active>
+            <codePool>local</codePool>
+        </Ho_Handles>
+    </modules>
+</config>  

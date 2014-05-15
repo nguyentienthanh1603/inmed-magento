@@ -1,0 +1,253 @@
+.cms-
+{
+  .home_page_image {
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .home_page_featured_product,
+  .home_page_latest_media,
+  .home_page_why_inmed{
+    background-color: @white;
+    margin-top: 15px;
+    padding-top: 5px;
+
+
+    .content{
+      padding: 40px 15px 15px;
+      h2 {
+        color: @blue;
+        font-family: @fontPTSans;
+        font-weight: bold;
+        font-size: 28px;
+      }
+    }
+  }
+
+}
+
+
+.home-middle {
+
+  .row {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  table {
+    .hidden-xs;
+
+    tr {
+
+      td {
+        color: @white;
+        line-height: 28px;
+        font-family: @fontPTSans;
+        font-size: 26px;
+        padding: 15px 0 13px;
+        min-height: 90px;
+        text-align: center;
+        font-weight: bold;
+        background-color: @blue;
+        width: 33%;
+        .text-shadow;
+        a {
+          color: @white;
+          display: block;
+
+          height: 90px;
+          &:hover {
+            background-color: @white;
+            color: @blue;
+            text-decoration: none;
+          }
+        }
+        &.middle {
+          background-color: lighten(@blue, 10%);
+        }
+        &.last {
+          padding: 0;line-height: 88px;
+        }
+      }
+    }
+  }
+}
+.home_page_featured_product {
+
+  .content {
+    display: inline-block;
+//    width: 75%;
+
+    h2 {
+
+    }
+    p {
+      padding-bottom: 20px;
+    }
+    img {
+      float: right;
+
+      @media (max-width: @screen-xs) {
+        & {
+          max-width: 90px;
+        }
+      }
+
+      @media (min-width: @screen-sm) {
+        & {
+
+          width: auto;
+
+        }
+      }
+
+    }
+
+
+  }
+  .image {
+        display: inline-block;
+    width: 20%;
+    padding-top: 10px;
+//    position: absolute;
+//    float: right;
+    top: 50px;
+    display: inline-block;
+    vertical-align: top;
+    img {
+      width: auto;
+    }
+
+  }
+
+
+}
+
+li.media {
+  display: block;
+
+
+  .clearfix;
+  padding: 0 10px;
+  border-left: 1px solid @white;
+  border-right: 1px solid @white;
+  a {
+    border-bottom: 1px solid lighten(@gray1, 5%);
+
+    display: block;
+    min-height: 85px;
+    img {
+      height: 75px;
+      //          padding-top: 5px;
+      vertical-align: top;
+    }
+    h4 {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    font-size: 14px;
+    color: @gray5;
+  }
+
+  &:hover {
+    background-color: darken(@white, 5%);
+    text-decoration: none;
+    border-left: 1px solid @gray2;
+    border-right: 1px solid @gray2;
+
+    p, a {
+      text-decoration: none;
+      color: @gray5;
+    }
+  }
+}
+
+.home_page_why_inmed {
+
+  .content {
+    display: inline-block;
+    width: 75%;
+    padding-top: 0px !important;
+
+    h2 {
+
+    }
+    p {
+      padding-bottom: 0px;
+    }
+
+
+  }
+  .image {
+    //    display: inline-block;
+    width: 20%;
+    //    float: right;
+    display: inline-block;
+    vertical-align: bottom;
+//    float: left;
+    img {
+      max-height: 200px;
+    }
+
+  }
+
+}
+
+.home_page_latest_media,
+.block-media {
+
+  .content {
+    padding: 40px 0 15px !important;
+  }
+  ul.home-page-media,
+  ul.media-list{
+    padding: 20px 0 0px;
+
+
+      margin-bottom: 0;
+      padding-bottom: 0;
+      display: block;
+
+      li {
+
+        &.media {
+
+          a {
+            img {
+              padding: 2px;
+              .round(1px);
+              border: 1px solid @gray1;
+              margin-right: 5px;
+              filter: alpha(opacity=80);
+              opacity: 0.8;
+            }
+
+            &.read-more {
+              //           display: none;
+            }
+            .media-body {
+              h4 {
+                padding-bottom: 2px;
+                margin-bottom: 0;
+                border-bottom: 1px solid @gray0;
+              }
+              font-size: 13px;
+            }
+
+            &:hover {
+              img {
+                filter: alpha(opacity=100);
+                opacity: 1;
+                border: 1px solid @white;
+              }
+            }
+          }
+        }
+      }
+
+
+
+  }
+}

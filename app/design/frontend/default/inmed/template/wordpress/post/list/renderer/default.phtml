@@ -1,0 +1,116 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php
+$post = $this->getPost();
+$author = $post->getAuthor();
+
+
+//var_dump($author);
+
+// determine if in contributors category
+$_url = $post->getPermalink();
+$_url_standard = $post->getPermalink();
+$_contributors = false;
+if ( in_array(7,$post->getCategoryIds()))
+{
+	$_url .= 'all';
+	$_contributors = true;
+	$comments = $post->getComments();
+}
+else
+{
+	$authorAvatar = $post->getAuthorAvatarUrl(50, $author->getUserEmail());
+}
+
+
+// check to see if in contributor articles, if so, do not show any from contributors
+$urlString = Mage::helper('core/url')->getCurrentUrl();
+$url = Mage::getSingleton('core/url')->parseUrl($urlString);
+if (strpos($url->getPath(),'im-listening/contributors') == 1 )
+{
+	if ( in_array(7,$post->getCategoryIds()) && strpos($url->getPath(),'all') > 1 )
+	{
+		// lets hide the article
+		return;
+	}
+}
+
+?>
+
+<div class="panel panel-default">
+
+
+
+	<div class="panel-body">
+
+		<h2 class="float-left postlists">
+			<a href="<?php echo $_url ?>" title="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"><?php echo $this->escapeHtml($post->getPostTitle()) ?></a>
+			<?php
+			if ( !$_contributors )
+			{
+				?>
+				<small>By <a href="<?php echo Mage::getBaseUrl().'im-listening/contributors/'. $post->getAuthor()->getUserNicename(); ?>"><?php echo $post->getAuthor()->getDisplayName(); ?></a></small>
+				<span class="date"><?php echo $post->getPostDate(); ?></span>
+
+			<?php
+			}
+			?>
+		</h2>
+
+
+		<?php echo $this->getBeforePostContentHtml() ?>
+		<div class="post-entry entry<?php if ($post->getFeaturedImage): ?> post-entry-with-image<?php endif; ?>">
+
+			<?php if ($post->isViewableForVisitor()): ?>
+				<?php if ($featuredImage = $post->getFeaturedImage()): ?>
+					<div class="featured-image left">
+						<a href="<?php echo $_url ?>" title="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"><img src="<?php echo $featuredImage->getAvailableImage() ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"/></a>
+					</div>
+				<?php endif; ?>
+				<?php if ($this->displayExcerptInFeed() || $post->hasMoreTag()): ?>
+					<?php echo $post->getPostExcerpt( true, true) ?>
+				<?php else: ?>
+					<?php echo $post->getPostContent() ?>
+				<?php endif; ?>
+
+				<?php
+				if ( $_contributors )
+				{
+					?>
+						<div class="contributer-actions">
+							<a href="<?php echo $_url; ?>" class="">View all my articles</a> |
+							<a href="<?php echo $_url_standard; ?>" class="comments-link">View Comments <span class="badge badge-gray"><?php echo $post->getCommentCount(); ?></span></a>
+						</div>
+						<?php
+				}
+
+				if ( !$_contributors )
+				{
+					?>
+<!--					<p class="post-date when">-->
+<!--						<img src="--><?php //echo $authorAvatar; ?><!--">-->
+<!---->
+<!--						--><?php //echo stripslashes($this->__('This entry was posted on %s<span class=\"by-author\"> by %s</span>.', $post->getPostDate(), $post->getAuthor()->getDisplayName())) ?>
+<!--					</p>-->
+				<?php
+				}
+
+
+
+				echo $this->getCommentsHtml()
+
+				?>
+
+			<?php else: ?>
+				<?php echo $this->getPasswordProtectHtml($post) ?>
+			<?php endif; ?>
+		</div>
+	</div>
+</div>
+

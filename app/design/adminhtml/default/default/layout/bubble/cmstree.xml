@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <adminhtml_cms_page_index>
+        <update handle="editor"/>
+        <reference name="root">
+            <action method="setTemplate"><template>bubble/cmstree/cms/page/index.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="setCanLoadTinyMce"><flag>1</flag></action>
+        </reference>
+        <reference name="left">
+            <block name="page.tree" type="bubble_cmstree/adminhtml_cms_page_tree" template="bubble/cmstree/cms/page/tree.phtml"/>
+        </reference>
+        <remove name="content"/>
+    </adminhtml_cms_page_index>
+
+    <adminhtml_cms_page_edit>
+        <update handle="editor"/>
+        <reference name="head">
+            <action method="setCanLoadTinyMce"><flag>1</flag></action>
+        </reference>
+        <reference name="cms_page_edit_tabs">
+            <action method="setTemplate"><template>widget/tabshoriz.phtml</template></action>
+        </reference>
+        <reference name="left">
+            <action method="unsetChild"><child>cms_page_edit_tabs</child></action>
+        </reference>
+        <reference name="cms_page_edit">
+            <action method="setTemplate"><template>bubble/cmstree/cms/page/edit-container.phtml</template></action>
+        </reference>
+    </adminhtml_cms_page_edit>
+
+    <adminhtml_cms_page_permissions_index>
+        <reference name="head">
+            <action method="setCanLoadExtJs"><flag>1</flag></action>
+        </reference>
+        <reference name="content">
+            <block type="adminhtml/template" name="cms_page_permissions" template="bubble/cmstree/cms/page/permissions/index.phtml">
+                <block type="adminhtml/store_switcher" name="store_switcher" template="bubble/cmstree/cms/page/store/switcher.phtml">
+                    <action method="setUseConfirm"><params>0</params></action>
+                </block>
+                <block type="bubble_cmstree/adminhtml_customer_group_switcher" name="customer_group_switcher" template="bubble/cmstree/customer/group/switcher.phtml">
+                    <action method="setUseConfirm"><params>0</params></action>
+                </block>
+                <block type="bubble_cmstree/adminhtml_cms_page_permissions_tree" name="cms_page_permissions_tree" template="bubble/cmstree/cms/page/permissions/tree.phtml"/>
+            </block>
+        </reference>
+    </adminhtml_cms_page_permissions_index>
+</layout>

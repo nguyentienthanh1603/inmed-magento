@@ -1,0 +1,44 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php $posts = $this->getPosts() ?>
+<?php if (count($posts) > 0): ?>
+	<div class="block block-blog block-stories post-list">
+
+		<div class="panel-body">
+
+			<?php foreach($posts as $post): ?>
+				<h2 class="float-left imlistening-heading">
+					<a href="<?php echo $post->getPermalink() ?>" title="<?php echo $this->htmlEscape($post->getPostTitle()) ?>">
+						<?php echo $this->htmlEscape($post->getPostTitle()) ?>
+					</a>
+					<small>By <a href="<?php echo Mage::getBaseUrl().'im-listening/contributors/'. $post->getAuthor()->getUserNicename(); ?>"><?php echo $post->getAuthor()->getDisplayName(); ?></a></small>
+					<span class="date"><?php echo $post->getPostDate(); ?></span>
+				</h2>
+
+				<?php if ($featuredImage = $post->getFeaturedImage()): ?>
+
+					<img  class="pull-left" class="media-object" src="<?php echo $featuredImage->getAvailableImage() ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"/>
+
+				<?php endif; ?>
+			<?php if ($post->hasMoreTag()): ?>
+				<?php echo $post->getPostExcerpt(true, true) ?>
+			<?php else: ?>
+				<?php echo $post->getPostContent() ?>
+			<?php endif; ?>
+<p>&nbsp;</p>
+				<p>&nbsp;</p>
+			<?php endforeach; ?>
+
+		</div>
+		<a class="view_more_large" href="<?php echo Mage::getBaseUrl(); ?>im-listening/stories">
+			View More Stories
+		</a>
+	</div>
+<?php endif; ?>
+

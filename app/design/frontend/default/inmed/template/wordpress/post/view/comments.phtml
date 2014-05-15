@@ -1,0 +1,65 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php
+$post = $this->getPost();
+
+$comments = $this->getComments();
+?>
+
+<?php if (count($comments) > 0): ?>
+	<ul class="comment-list<?php if ($this->getParentId()): ?> children<?php endif; ?>">
+		<?php foreach($comments as $comment): ?>
+			<li class="comment" id="comment-<?php echo $comment->getId() ?>">
+				<div class="comment-inner">
+					<?php
+
+					/**
+					 * Todo - check to see if avatar uploaded in magento
+					 * Name - Samuel Goodwin
+					 * Date - 16/04/2014
+					 */
+
+					if ($avatarUrl = $comment->getAvatarUrl(50))
+					{
+						$avatarUrl = $comment->getAvatarUrl(50);
+					}
+					elseif ( $_avatar = Mage::getModel('customer/customer')->load($comment->getUserId())->getData() )
+					{
+						$avatarUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA). 'customer'.$_avatar['avatar'];
+					}
+					else
+					{
+						$avatarUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA). 'customer/no_avatar.png';
+					}
+					?>
+					<div class="gravatar">
+						<img src="<?php echo $avatarUrl ?>" alt="<?php echo $this->escapeHtml($comment->getCommentAuthor()) ?>" />
+					</div>
+					<div class="comment-meta comment-date by">
+						<?php if ($comment->getCommentAuthorUrl() !== '#'): ?>
+							<a href="<?php echo $this->escapeHtml($comment->getCommentAuthorUrl()) ?>" rel="nofollow" class="comment-url"><?php echo $this->escapeHtml($comment->getCommentAuthor()) ?></a> 
+						<?php else: ?>
+							<span class="comment-url">
+								<?php echo $this->escapeHtml($comment->getCommentAuthor()) ?>
+							</span>					
+						<?php endif; ?>
+						<a href="<?php echo $comment->getUrl() ?>" rel="nofollow" class="comment-when"><?php echo $this->__('%s at %s', $comment->getCommentDate() , $comment->getCommentTime()) ?></a>
+					</div>
+					<p class="comment-entry entry"><?php echo $this->getCommentContent($comment) ?></p>
+					<?php if ($this->canComment()): ?>
+						<div class="reply">
+							<a href="<?php echo $this->getPost()->getPermalink() ?>?replytocom=<?php echo $comment->getId() ?>#respond" class="btn btn-info"><?php echo $this->__('Reply') ?> <span>&darr;</span></a>
+						</div>
+					<?php endif; ?>
+				</div>
+				<?php echo $this->getChildrenCommentsHtml($comment) ?>
+			</li>
+		<?php endforeach; ?>
+	</ul>
+<?php endif; ?>

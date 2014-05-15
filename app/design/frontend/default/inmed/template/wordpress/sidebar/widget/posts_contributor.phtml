@@ -1,0 +1,40 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+
+<?php $posts = $this->getPosts() ?>
+<?php if (count($posts) > 0): ?>
+<div class="box-account box-account-padding block-contributors">
+	<h3 class="float-left">Contributors</h3>
+		<ul class="media-list">
+
+			<?php foreach($posts as $post): ?>
+				<li class="media">
+					<a href="<?php echo $post->getPermalink() ?>">
+						<?php if ($featuredImage = $post->getFeaturedImage()): ?>
+
+							<img  class="pull-left" class="media-object" src="<?php echo $featuredImage->getAvailableImage() ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"/>
+
+						<?php endif; ?>
+
+						<div class="media-body">
+							<h4 class="media-heading">
+
+								<?php echo $this->htmlEscape($post->getPostTitle()) ?>
+
+							</h4>
+
+						</div>
+					</a>
+				</li>
+			<?php endforeach; ?>
+
+		</ul>
+</div>
+
+<?php endif; ?>

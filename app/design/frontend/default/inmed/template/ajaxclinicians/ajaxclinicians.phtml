@@ -1,0 +1,59 @@
+
+<?php
+if ( count($data) )
+{
+	?>
+	<div class="clinician_search_results">
+		SEARCH RESULTS
+	</div>
+	<ul class="clinician_list">
+	<?php
+	foreach ( $data AS $record)
+	{
+		?>
+		<li>
+			<div class="clinician_select">
+				<input type="radio" class="clinician_group_id" name="clinician_group_id" value="<?php echo $record['clinician_group_id']; ?>|<?php echo $record['clinician_id']; ?>">
+			</div>
+			<div class="clinician_name"><?php echo $record['name']; ?></div>
+			<div class="clinician_city_region"><?php echo $record['city']; ?>, <?php echo $record['region']; ?></div>
+		</li>
+	<?php
+	}
+	?>
+		<li class="clinician_select_none">
+			<div class="clinician_select">
+				<input type="radio" name="clinician_group" value="">
+			</div>
+			<div class="clinician_name">Unselect</div>
+		</li>
+	</ul>
+	<?php
+}
+else {
+	?>
+	<div class="alert alert-warning">
+		No matching Clinicians found
+	</div>
+	<?php
+}
+?>
+<script type="text/javascript">
+
+	jQuery( document ).ready(function($) {
+
+
+		$('.clinician_group_id').click( function() {
+			console.log('sdf');
+			$('.selected-clinician').removeClass('selected-clinician');
+			$(this).parent().parent().addClass('selected-clinician');
+//			$('.account_select_consumer').prop('checked',true);
+//
+//			$('.clinician_slide').slideUp();
+//			$('.consumer_slide').slideDown();
+		});
+
+
+
+	});
+</script>

@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webtex
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Webtex EULA that is bundled with
+ * this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.webtex.com/LICENSE-1.0.html
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@webtex.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension
+ * for your needs please refer to http://www.webtex.com/ for more information
+ * or send an email to sales@webtex.com
+ *
+ * @category   Webtex
+ * @package    Webtex_CustomerPrices
+ * @copyright  Copyright (c) 2010 Webtex (http://www.webtex.com/)
+ * @license    http://www.webtex.com/LICENSE-1.0.html
+ */
+
+/**
+ * Customer Prices extension
+ *
+ * @category   Webtex
+ * @package    Webtex_CustomerPrices
+ * @author     Webtex Dev Team <dev@webtex.com>
+ */
+-->
+<config>
+  <modules>
+    <Webtex_CustomerPrices>
+      <version>2.1.1</version>
+    </Webtex_CustomerPrices>
+  </modules>
+  <frontend>
+        <layout>
+            <updates>
+                <customerprices>
+                    <file>customerprices.xml</file>
+                </customerprices>
+            </updates>
+        </layout>
+  </frontend>
+  <global>
+    <models>
+        <customerprices>
+            <class>Webtex_CustomerPrices_Model</class>
+            <resourceModel>customerprices_mysql4</resourceModel>
+        </customerprices>
+        <customerprices_mysql4>
+            <class>Webtex_CustomerPrices_Model_Mysql4</class>
+            <entities>
+                <prices>
+                    <table>customerprices_prices</table>
+                </prices>
+            </entities>
+        </customerprices_mysql4>
+        <resource>
+            <rewrite>
+                <product_collection>Webtex_CustomerPrices_Model_Resource_Product_Collection</product_collection>
+            </rewrite>
+        </resource>
+      <catalog_resource_eav_mysql4>
+	<rewrite>
+	  <layer_filter_price>Webtex_CustomerPrices_Model_Mysql4_Catalog_Layer_Filter_Price</layer_filter_price>
+	</rewrite>
+      </catalog_resource_eav_mysql4>
+    <catalog>
+        <rewrite>
+            <product>Webtex_CustomerPrices_Model_Product</product>
+            <product_type_price>Webtex_CustomerPrices_Model_Product_Type_Price</product_type_price>
+        </rewrite>
+    </catalog>
+    </models>
+    <resources>
+            <customerprices_setup>
+                <setup>
+                    <module>Webtex_CustomerPrices</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </customerprices_setup>
+            <customerprices_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </customerprices_write>
+            <customerprices_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </customerprices_read>
+    </resources>
+    <blocks>
+      <customerprices>
+	<class>Webtex_CustomerPrices_Block</class>
+      </customerprices>
+            <catalog>
+                <rewrite>
+		    <product_view>Webtex_CustomerPrices_Block_Catalog_Product_View</product_view>
+                    <product_price>Webtex_CustomerPrices_Block_Catalog_Product_Price</product_price>
+	            <layer_filter_price>Webtex_CustomerPrices_Block_Catalog_Layer_Filter_Price</layer_filter_price>
+                </rewrite>
+            </catalog>
+      <adminhtml>
+          <rewrite>
+              <catalog_product_edit_tabs>Webtex_CustomerPrices_Block_Adminhtml_Catalog_Product_Tabs</catalog_product_edit_tabs>
+          </rewrite>
+      </adminhtml>
+      <bundle>
+	<rewrite>
+	  <catalog_product_price>Webtex_CustomerPrices_Block_Bundle_Catalog_Product_Price</catalog_product_price>
+	</rewrite>
+      </bundle>
+    </blocks>
+        <helpers>
+            <customerprices>
+                <class>Webtex_CustomerPrices_Helper</class>
+            </customerprices>
+        </helpers>
+  <events>
+      <catalog_block_product_list_collection>
+	<observers>
+	  <customerprices>
+	    <class>customerprices/observer</class>
+	    <method>layeredPrice</method>
+	  </customerprices>
+	  <customerprices_price_order>
+	    <class>customerprices/observer</class>
+	    <method>sortByPrice</method>
+	  </customerprices_price_order>
+	</observers>
+      </catalog_block_product_list_collection>
+	<catalog_product_save_after>
+		<observers>
+			<customerprices>
+				<class>customerprices/observer</class>
+				<method>productSaveAfter</method>
+			</customerprices>
+		</observers>
+        </catalog_product_save_after>
+        <catalog_block_product_list_collection>
+            <observers>
+		<customerprices>
+			<class>customerprices/observer</class>
+			<method>layeredPrice</method>
+		</customerprices>
+                <customerprices_price_order>
+                        <class>customerprices/observer</class>
+			<method>sortByPrice</method>
+                </customerprices_price_order>
+	    </observers>
+        </catalog_block_product_list_collection>
+      <catalog_product_collection_load_after>
+	<observers>
+	  <customerprices>
+	    <class>customerprices/observer</class>
+	    <method>collectionLoadAfter</method>
+	  </customerprices>
+	</observers>
+      </catalog_product_collection_load_after>
+      <catalog_product_load_after>
+	<observers>
+	  <customerprices>
+	    <class>customerprices/observer</class>
+	    <method>productLoadAfter</method>
+	  </customerprices>
+	</observers>
+      </catalog_product_load_after>
+      <catalog_product_get_final_price>
+            <observers>
+                <customerprices>
+                    <class>customerprices/observer</class>
+                    <method>processFrontFinalPrice</method>
+                </customerprices>
+            </observers>
+        </catalog_product_get_final_price>
+  </events>
+  </global>
+  <adminhtml>
+  <events>
+   <catalog_product_get_final_price>
+            <observers>
+                <customerprices>
+                    <class>customerprices/observer</class>
+                    <method>processBackFinalPrice</method>
+                </customerprices>
+            </observers>
+        </catalog_product_get_final_price>
+   </events>
+    <layout>
+      <updates>
+	<customerprices>
+	  <file>webtex_customerprices.xml</file>
+	</customerprices>
+      </updates>
+    </layout>
+    <menu>
+      <system>
+        <children>
+          <convert>
+            <children>
+              <customerprices>
+                 <title>Prices per Customer</title>
+                    <children>
+                        <export translate="title">
+                            <title>Export Prices</title>
+                            <action>customerprices/convert/export</action>
+                        </export>
+                        <import translate="title">
+                            <title>Import Prices</title>
+                            <action>customerprices/convert/import</action>
+                        </import>
+                    </children>
+                </customerprices>
+              </children>
+            </convert>
+          </children>
+       </system>
+    </menu>
+  </adminhtml>
+  <admin>
+    <routers>
+      <adminhtml>
+          <args>
+              <modules>
+                  <customerprices before="Mage_Adminhtml">Webtex_CustomerPrices</customerprices>
+              </modules>
+          </args>
+      </adminhtml>
+      <webtex_customerprices>
+	<use>admin</use>
+	<args>
+	  <module>Webtex_CustomerPrices</module>
+	  <frontName>customerprices</frontName>
+	</args>
+      </webtex_customerprices>
+    </routers>
+  </admin>
+  <default>
+    <customerprices>
+      <settings>
+	<isenable>1</isenable>
+	<hide_price>1</hide_price>
+      </settings>
+    </customerprices>
+  </default>
+</config>

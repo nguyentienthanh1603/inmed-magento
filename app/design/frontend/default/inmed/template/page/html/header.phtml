@@ -1,0 +1,207 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+
+$customer = Mage::getSingleton('customer/session');
+
+//var_dump($customer);
+?>
+<div class="head_info">
+	<div class="container">
+		<div class="first">
+			Welcome to <?php echo Mage::app()->getStore()->getName(); ?>:
+			&nbsp;<a href="mailto:<?php echo Mage::getStoreConfig('trans_email/ident_general/email'); ?>">
+				<i class="fa fa-envelope-o"></i>
+				<?php echo Mage::getStoreConfig('trans_email/ident_general/email'); ?>
+			</a><span class="orholder">&nbsp;or&nbsp;</span>
+			<i class="fa fa-phone"></i>
+			<?php echo Mage::getStoreConfig('general/store_information/phone'); ?>
+
+		</div>
+
+		<div class="second">
+
+			<?php
+			if ( Mage::getSingleton('customer/session')->isLoggedIn() )
+			{
+				$customer = Mage::getSingleton('customer/session')->getCustomer();
+				// account hold status
+				$hold = $customer->account_on_hold ;
+
+				// avatar
+				$hash = md5( strtolower( trim( $customer->email ) ) );
+//				avatar $customer->email;
+
+
+				if ( $_avatar = $customer->avatar )
+				{
+					$avatarUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA). 'customer'.$_avatar;
+				}
+				elseif ($avatarUrl = 'http://www.gravatar.com/avatar/'.$hash)
+				{
+					$avatarUrl = 'http://www.gravatar.com/avatar/'.$hash;
+				}
+				else
+				{
+					$avatarUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA). 'customer/no_avatar.png';
+				}
+
+//				var_dump($customer);
+//exit();
+				// Get group Id
+				$groupId = Mage::getSingleton('customer/session')->getCustomerGroupId();
+				//Get customer Group name
+				$group = Mage::getModel('customer/group')->load($groupId);
+//				echo $group->getCode();
+				?>
+					<a title="Account Details" class="header_account"><?php
+
+						if ( $hold )
+						{
+							?><span class="text-danger">Hi <strong><?php echo $customer->firstname ?></strong>&nbsp;&nbsp;</span> <img src="<?php echo $avatarUrl; ?>"><?php
+						}
+						else
+						{
+						?><span class="">Hi <strong><?php echo $customer->firstname ?></strong>&nbsp;&nbsp;</span> <img src="<?php echo $avatarUrl; ?>"><?php
+						}
+						?>
+					</a>
+					<div class="header_account_options">
+						<ul>
+							<?php
+							if ( $hold )
+							{
+								?><li class="text-danger">
+
+									Account On Hold
+							</li><?php
+							}
+							?>
+							<li>
+								<a href="/customer/account/index" title="Account Details">
+									Dashboard&nbsp;<i class="fa fa-gear"></i>
+								</a>
+							</li>
+							<li>
+								<a href="/sales/order/history" title="My Orders">
+									My Orders&nbsp;<i class="fa fa-truck"></i>
+								</a>
+							</li>
+							<?php
+							if ( $group->getCode() == 'Clinicians')
+							{
+							?>
+								<li>
+									<a href="http://pmt.inmedtech.co" target="blank" title="PMT">
+										Patient Manage&nbsp;<i class="fa fa-users"></i>
+									</a>
+								</li>
+							<?php
+							}
+							?>
+							<li class="seperator"></li>
+							<li>
+								<a href="/customer/account/logout" title="Logout">
+									Logout&nbsp;<i class="fa fa-times"></i>
+								</a>
+							</li>
+						</ul>
+
+					</div>
+
+				<?php
+			}
+			else {
+				?>
+					<a href="/customer/account/login" title="Login | Register">
+						<span>Login | Register</span>
+
+					</a>
+				<?php
+			}
+			?>
+		</div>
+
+		<div class="third">
+			<a href="<?php echo $this->getUrl('checkout/cart')?>">
+				<i class="fa fa-shopping-cart"></i>&nbsp;
+				<span><?php
+				echo $this->helper('checkout')->formatPrice(Mage::getSingleton('checkout/cart')->getQuote()->getGrandTotal());
+				?></span>
+			</a>
+			<div class="header_cart">
+				<?php echo $this->getLayout()->getBlock('cart_header')->toHtml(); ?>
+			</div>
+		</div>
+		<div class="fourth">
+			<?php echo $this->getLayout()->getBlock('top.search')->toHtml(); ?>
+		</div>
+
+	</div>
+	<div class="clearfix"></div>
+</div>
+
+<?php echo $this->getChildHtml('topMenu') ?>
+
+<script>
+	jQuery( document ).ready(function($) {
+
+		$('.second').hover(
+			function() {
+				// show options
+				$(this).find('.header_account_options').show();
+			},
+			function() {
+				$(this).find('.header_account_options').hide();
+			}
+		);
+
+		$('.second').click(
+			function() {
+				// show options
+				$(this).find('.header_account_options').show();
+			}
+		);
+		$('.third').hover(
+			function() {
+				// show options
+				$(this).find('.header_cart').show();
+			},
+			function() {
+				$(this).find('.header_cart').hide();
+			}
+		);
+
+		$('.third').click(
+			function() {
+				// show options
+				$(this).find('.header_cart').show();
+			}
+		);
+	});
+</script>
