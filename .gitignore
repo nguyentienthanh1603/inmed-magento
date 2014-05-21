@@ -12,8 +12,7 @@ PATCH_*
 *.txt
 
 # image cache
-media/catalog/product/cache
-media/wysiwyg/.thumbs
+media
 
 # connection strings
 app/etc/local.xml
