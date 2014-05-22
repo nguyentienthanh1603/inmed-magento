@@ -55,7 +55,7 @@ $click_url = $this->getUrl('bannerslider/index/click');
 	car(document).ready(function($) {
 
 		car('.carousel').carousel({
-			interval: 9000 // in milliseconds
+			interval: <?php echo $blocks['slider_speed'];?> // in milliseconds
 		})
 	});
 
