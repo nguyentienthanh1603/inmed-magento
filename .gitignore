@@ -20,7 +20,7 @@ app/etc/production_local.xml
 app/etc/development_local.xml
 
 # wordpress
-#wordpress/wp-config.php
+wordpress/wp-config.php
 
 
 var/*
