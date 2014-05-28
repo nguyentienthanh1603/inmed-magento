@@ -14,6 +14,9 @@
  * @package WordPress
  */
 
+// do a if local, load local config variables
+
+
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define('DB_NAME', $_SERVER["DBWPNAME"]);
@@ -44,14 +47,14 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         'SbV@woG,:V9lA85/j?nbq=%/;-f-wMII6Nc4bF[uW*^NZWtm=X8*O!3o!gWv_Ke&');
-define('SECURE_AUTH_KEY',  'h!*6n`#v~_WG+hrzUC-qvK^(T~~mVZx2NFSFzR+D0$a{|DZDrdZSi4zO;,r;_u|w');
-define('LOGGED_IN_KEY',    '5$K9^--DPIyjC@|uh7]MdilM2zea-D1_EUdk](?8h@{LMA@/:&:VR/SdZim<E|;8');
-define('NONCE_KEY',        'NR-LLTj[jBtxa^fB4.w=8{QxDy/M*G|#7_$ouL1[$LF6Qu;|@UHd S[T V20-3/F');
-define('AUTH_SALT',        'VW=vhjJJ/pmC5QxI-~$^E`y)Cz-]u[&tv1Mbn-v/yF7$,sr7@;DP#pj665s}S9WN');
-define('SECURE_AUTH_SALT', 'OktzF-K5K_7($Y`w7^4SSfb+mu<4Z[EkkpR1eX6&1EX5!s+:!|D:dgO6.m~3&%D3');
-define('LOGGED_IN_SALT',   'NS]ON|p60Jo%]fGq+7J6O#qZ,+6ZCU9%Kj}1_m]Mzrrla k|zW}Kj$Wz@#-fJ#4z');
-define('NONCE_SALT',       'GX+2g}--smKCMPq20K2Ul)/-71XFAHG5.;|{x:Rm9jkt-87ouc?>sPy7Xa;27{|j');
+define('AUTH_KEY',         $_SERVER["AUTH_KEY"]);
+define('SECURE_AUTH_KEY',  $_SERVER["SECURE_AUTH_KEY"]);
+define('LOGGED_IN_KEY',    $_SERVER["LOGGED_IN_KEY"]);
+define('NONCE_KEY',        $_SERVER["NONCE_KEY"]);
+define('AUTH_SALT',        $_SERVER["AUTH_SALT"]);
+define('SECURE_AUTH_SALT', $_SERVER["SECURE_AUTH_SALT"]);
+define('LOGGED_IN_SALT',   $_SERVER["LOGGED_IN_SALT"]);
+define('NONCE_SALT',       $_SERVER["NONCE_SALT"]);
 
 /**#@-*/
 
