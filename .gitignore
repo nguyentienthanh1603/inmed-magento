@@ -21,6 +21,7 @@ app/etc/development_local.xml
 
 # wordpress
 wordpress/wp-config.php
+wordpress/wp-content/uploads
 
 
 var/*
