@@ -61,7 +61,7 @@ Default layout, loads most of the pages
                 <action method="addItem"><type>skin_js</type><name>js/ie6.js</name><params/><if>lt IE 7</if></action>
 
 
-                <action method="addItem"><type>skin_js</type><name>bower_components/bootstrap/js/transition.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/transition.js</name></action>
 
                 <action method="addItem"><type>skin_js</type><name>js/bootstrap.min.js</name></action>
                 <!--<action method="addItem"><type>skin_js</type><name>js/jquery.mask.min.js</name></action>-->
