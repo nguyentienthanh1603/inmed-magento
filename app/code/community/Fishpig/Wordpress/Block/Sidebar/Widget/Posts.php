@@ -110,7 +110,7 @@ implements Mage_Widget_Block_Interface
 			return $this->getCategory()->getName();
 		}
 		
-		return $this->__('Recent Posts');
+		return $this->__('InMed Articles');
 	}
 	
 	/**

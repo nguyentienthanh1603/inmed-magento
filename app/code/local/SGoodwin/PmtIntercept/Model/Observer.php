@@ -670,15 +670,6 @@ class SGoodwin_PmtIntercept_Model_Observer //extends Varien_Object
 //-------------------------------------------------------------------
 //------- Admin Observers -----------------------------------------------
 //-------------------------------------------------------------------
-
-	public function admin_customer_delete_before (Varien_Event_Observer $observer)
-	{
-//		Mage::log( "admin_customer_delete_before");
-		echo 'admin_customer_delete_before';
-		var_dump($observer->getCustomer());
-		exit();
-	}
-
 	/**
 	 * Used ALWAYS on the save in admin and front end
 	 *

@@ -62,6 +62,7 @@ Default layout, loads most of the pages
 
 
                 <action method="addItem"><type>skin_js</type><name>js/transition.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/modal.js</name></action>
 
                 <action method="addItem"><type>skin_js</type><name>js/bootstrap.min.js</name></action>
                 <!--<action method="addItem"><type>skin_js</type><name>js/jquery.mask.min.js</name></action>-->

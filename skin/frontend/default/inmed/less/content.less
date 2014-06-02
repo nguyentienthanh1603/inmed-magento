@@ -25,17 +25,21 @@ h3.cmsheading {
   width: 90%;
 }
 
+
 .cms-header-image {
   overflow: hidden;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  border: 1px solid @black;
-  padding: 0 15px;
+  max-width: 96.5%;
+//  border: 1px solid @black;
+
+  margin: 0 15px;
+
   max-height: 260px;
   min-height: 260px;
   margin-bottom: 0px;
+  .box-me;
 //
   h3 {
     position: absolute;
@@ -109,6 +113,7 @@ h3.cmsheading {
 
 .cms-page-view {
   .box-account {
+    overflow: hidden;
     .std {
       padding-top: 60px;
     }
@@ -188,7 +193,12 @@ h3.cmsheading {
     }
 }
 
+.post-entry {
 
+  .featured-image {
+    display: none;
+  }
+}
 
 // RSS
 .rss-title h1 { background:url(../../images/i_rss-big.png) 0 4px no-repeat; padding-left:27px; }
