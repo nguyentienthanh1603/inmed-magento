@@ -84,4 +84,13 @@ $mageRunCode = isset($_SERVER['MAGE_RUN_CODE']) ? $_SERVER['MAGE_RUN_CODE'] : ''
 /* Run store or run website */
 $mageRunType = isset($_SERVER['MAGE_RUN_TYPE']) ? $_SERVER['MAGE_RUN_TYPE'] : 'store';
 
+/**
+ * EC2's load balancer sets these for us so we know we're secure,
+ *  preventing Magento from performing a redirect loop.
+ **/
+if( isset($_SERVER['HTTP_X_FORWARDED_PROTO']) ) {
+	$_SERVER['HTTPS'] = 'on';
+	$_SERVER['SERVER_PORT'] = 443;
+}
+
 Mage::run($mageRunCode, $mageRunType);
