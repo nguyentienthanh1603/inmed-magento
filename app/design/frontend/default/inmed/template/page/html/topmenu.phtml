@@ -165,18 +165,47 @@ if ($this->shouldRenderPages()) {
 $_menu .= '<li class="level0'.$active_2.' nav-1 level-top first parent blog">
 <a href="'.Mage::getBaseUrl().'blog" class="level-top">
 <span>Blog</span>
-</a>';
+</a>
+<ul class="level0 dropdown-menu">
+<li class="level1'.$stories.' nav-5-1 first">
+<a href="'.Mage::getBaseUrl().'blog/stories">
+<span>Probiotics</span>
+</a>
+</li><li class="level1'.$inter.' nav-5-2">
+<a href="'.Mage::getBaseUrl().'blog/health-technology">
+<span>Health Technology</span>
+</a>
+</li>
+<li class="level1'.$media.' nav-5-3">
+<a href="'.Mage::getBaseUrl().'blog/practitioner">
+<span>Practitioner</span>
+</a>
+</li>
+<li class="level1'.$cont.' nav-5-3">
+<a href="'.Mage::getBaseUrl().'blog/med-trends">
+<span>Med Trends</span>
+</a>
+</li>
+<li class="level1'.$cont.' nav-5-4 last">
+<a href="'.Mage::getBaseUrl().'blog/self-health">
+<span>Self Health</span>
+</a>
+</li>
+</ul>
+</li>';
 
 // add the cart
 $_menu .= '<li class="level0'.$active_2.' nav-1 level-top first parent your-cart">
 <a href="'.Mage::getBaseUrl().'checkout/cart/" class="level-top">
 <span>Your Cart</span>
-</a>';
+</a>
+</li>';
 
 $_menu .= '<li class="level0'.$active_2.' nav-1 level-top first parent account-details">
 <a href="'.Mage::getBaseUrl().'customer/account/" class="level-top">
 <span>Account Details</span>
-</a>';
+</a>
+</li>';
 
 ?>
 
