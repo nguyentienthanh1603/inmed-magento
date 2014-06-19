@@ -21,8 +21,13 @@
 				<li class="media<?php if ( $cnt == 1 ){ ?> first<?php } ?>">
 					<a href="<?php echo $post->getPermalink() ?>">
 						<?php if ($featuredImage = $post->getFeaturedImage() && $cnt == 1): ?>
+							<?php
+							//var_dump($post->getFeaturedImage()->getAvailableImage());
+							//exit();
 
-							<img  class="pull-left" class="media-object" src="<?php echo $featuredImage->getAvailableImage() ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"/>
+							?>
+							<img  class="pull-left" class="media-object" src="<?php echo $post->getFeaturedImage()->getAvailableImage() ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"/>
+
 
 						<?php endif; ?>
 
