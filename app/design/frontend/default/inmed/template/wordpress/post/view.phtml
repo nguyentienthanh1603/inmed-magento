@@ -43,26 +43,67 @@ if (strpos($url->getPath(),'im-listening/contributors') == 1 )
 
 		<div class="panel-body">
 
-			<h2 class="float-left"><?php echo $post->getPostTitle() ?>
-				<?php
-				if ( !$_contributer_article )
-				{
-					?>
-					<small>By <a href="<?php echo Mage::getBaseUrl().'im-listening/contributors/'. $post->getAuthor()->getUserNicename(); ?>"><?php echo $post->getAuthor()->getDisplayName(); ?></a></small>
-					<span><?php echo $post->getPostDate(); ?></span>
+			<div class="wordpress-header">
+				<div class="date-wrapper">
+				<span class="date-day">
 					<?php
-				}
-				?>
-			</h2>
+					echo date('d', strtotime($post->getPostDateRaw()));
+					?>
+				</span>
+				<span class="date-month-year">
+					<?php
+					echo date('M Y', strtotime($post->getPostDateRaw()));
+					?>
+				</span>
+				</div>
+				<div class="title-wrapper">
+
+					<a class="h2-wordpress" href="<?php echo $_url ?>" title="<?php echo $this->escapeHtml($post->getPostTitle()) ?>">
+						<h2><?php echo $this->escapeHtml($post->getPostTitle()) ?></h2>
+					</a>
+					<div class="wordpress-contributor-wrapper">
+						<?php //echo $post->getAuthor()->getContributorImage(); ?>
+
+						<div class="contributor-wrapper">
+
+							<?php
+							if ( $post->getAuthor()->getContributorImage() != '' )
+							{
+								?>
+								<img src="<?php echo $post->getAuthor()->getContributorImage(); ?>">
+							<?php
+							}
+							?>
+							<a href="<?php echo Mage::getBaseUrl().'im-listening/contributors/'. $post->getAuthor()->getUserNicename(); ?>">
+								<?php echo $post->getAuthor()->getDisplayName(); ?>
+								<span>View My Articles</span>
+							</a>
+						</div>
+					</div>
+
+					<div class="addthis_sharing_toolbox"></div>
+					<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53a3aa090df647cf"></script>
+				</div>
+			</div>
+
+
 
 			<div class="post-view">
 
+
+
 				<?php echo $this->getBeforePostContentHtml() ?>
 				<div class="post-entry entry std<?php if ($post->getFeaturedImage()): ?> post-entry-with-image<?php endif; ?>">
+
+
 					<?php if ($post->isViewableForVisitor()): ?>
+
 						<?php if ($featuredImage = $post->getFeaturedImage()): ?>
-							<div class="featured-image left" ><img src="<?php echo $featuredImage->getAvailableImage() ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"/></div>
+
+							<img  class="media-object featured-image-imlistening"  src="<?php echo $featuredImage->getAvailableImage() ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"/> <br />
+
 						<?php endif; ?>
+
 						<?php echo $post->getPostContent() ?>
 
 						<?php
@@ -79,6 +120,11 @@ if (strpos($url->getPath(),'im-listening/contributors') == 1 )
 					<?php else: ?>
 						<?php echo $this->getPasswordProtectHtml() ?>
 					<?php endif; ?>
+
+					<p>&nbsp;</p>
+					<!-- Go to www.addthis.com/dashboard to customize your tools -->
+					<div class="addthis_native_toolbox"></div>
+					<p>&nbsp;</p>
 				</div>
 
 				<?php //echo $this->getAfterPostContentHtml() ?>
@@ -88,3 +134,6 @@ if (strpos($url->getPath(),'im-listening/contributors') == 1 )
 		</div>
 	</div>
 <?php endif; ?>
+
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53a3aa090df647cf"></script>

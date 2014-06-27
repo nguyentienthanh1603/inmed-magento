@@ -207,6 +207,47 @@ class Fishpig_Wordpress_Model_User extends Fishpig_Wordpress_Model_Abstract
 		return $this;
 	}
 
+
+	/**
+	 * Retrieve the user's nickname
+	 *
+	 * @return string
+	 */
+	public function getContributorImage()
+	{
+
+
+		$select = Mage::helper('wordpress/database')->getReadAdapter()
+			->select('*')
+			->from($this->getResource()->getTable('wordpress/post_meta'), 'meta_value')
+			->where('meta_key=?', '_wp_attached_file')
+			->where('post_id=?', $this->getMetaValue('wp_user_avatar'))
+			->limit(1);
+
+		$data = Mage::helper('wordpress/database')->getReadAdapter()->fetchOne($select);
+
+		if ( $data )
+		{
+			return Mage::helper('wordpress')->getFileUploadUrl() . $data;
+		}
+		else {
+			return false;
+		}
+
+	}
+
+	/**
+	 * Set the user's nickname
+	 *
+	 * @param string $nickname
+	 * @return $this
+	 */
+	public function setContributorImage($image)
+	{
+		$this->setMetaValue('wp_user_avatar', $image);
+		return $this;
+	}
+
 	/**
 	 * Retrieve the URL for Gravatar
 	 *

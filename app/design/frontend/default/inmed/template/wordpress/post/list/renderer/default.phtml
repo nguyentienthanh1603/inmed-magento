@@ -49,19 +49,92 @@ if (strpos($url->getPath(),'im-listening/contributors') == 1 )
 
 	<div class="panel-body">
 
-		<h2 class="float-left postlists">
-			<a href="<?php echo $_url ?>" title="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"><?php echo $this->escapeHtml($post->getPostTitle()) ?></a>
-			<?php
-			if ( !$_contributors )
-			{
-				?>
-				<small>By <a href="<?php echo Mage::getBaseUrl().'im-listening/contributors/'. $post->getAuthor()->getUserNicename(); ?>"><?php echo $post->getAuthor()->getDisplayName(); ?></a></small>
-				<span class="date"><?php echo $post->getPostDate(); ?></span>
+		<?php
 
-			<?php
-			}
+		if ( !$_contributors )
+		{
+		?>
+		<div class="wordpress-header">
+			<div class="date-wrapper">
+				<span class="date-day">
+					<?php
+					echo date('d', strtotime($post->getPostDateRaw()));
+					?>
+				</span>
+				<span class="date-month-year">
+					<?php
+					echo date('M Y', strtotime($post->getPostDateRaw()));
+					?>
+				</span>
+			</div>
+			<div class="title-wrapper">
+
+				<a class="h2-wordpress" href="<?php echo $_url ?>" title="<?php echo $this->escapeHtml($post->getPostTitle()) ?>">
+					<h2><?php echo $this->escapeHtml($post->getPostTitle()) ?></h2>
+				</a>
+
+
+					<div class="wordpress-contributor-wrapper">
+
+
+						<?php //echo $post->getAuthor()->getContributorImage(); ?>
+
+						<div class="contributor-wrapper">
+
+							<?php
+							if ( $post->getAuthor()->getContributorImage() != '' )
+							{
+
+							?>
+							<img src="<?php echo $post->getAuthor()->getContributorImage(); ?>">
+							<?php
+							}
+							?>
+							<a href="<?php echo Mage::getBaseUrl().'im-listening/contributors/'. $post->getAuthor()->getUserNicename(); ?>">
+								<?php echo $post->getAuthor()->getDisplayName(); ?>
+								<span>View My Articles</span>
+							</a>
+
+						</div>
+
+
+
+					</div>
+
+
+
+
+				<div class="addthis_sharing_toolbox"></div>
+
+				<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53a3aa090df647cf"></script>
+
+			</div>
+
+
+
+		</div>
+
+		<?php
+		}
+		else {
 			?>
-		</h2>
+			<div class="wordpress-header contributers-list">
+				<div class="title-wrapper">
+
+					<a class="h2-wordpress" href="<?php echo $_url ?>" title="<?php echo $this->escapeHtml($post->getPostTitle()) ?>">
+						<h2><?php echo $this->escapeHtml($post->getPostTitle()) ?></h2>
+					</a>
+				</div>
+			</div>
+			<div class="contributer-actions">
+				<a href="<?php echo $_url; ?>" class="">View all my articles</a> |
+				<a href="<?php echo $_url_standard; ?>" class="comments-link">View Comments <span class="badge badge-gray"><?php echo $post->getCommentCount(); ?></span></a>
+			</div>
+
+		<?php
+		}
+
+		?>
 
 
 		<?php echo $this->getBeforePostContentHtml() ?>
@@ -79,27 +152,10 @@ if (strpos($url->getPath(),'im-listening/contributors') == 1 )
 					<?php echo $post->getPostContent() ?>
 				<?php endif; ?>
 
-				<?php
-				if ( $_contributors )
-				{
-					?>
-						<div class="contributer-actions">
-							<a href="<?php echo $_url; ?>" class="">View all my articles</a> |
-							<a href="<?php echo $_url_standard; ?>" class="comments-link">View Comments <span class="badge badge-gray"><?php echo $post->getCommentCount(); ?></span></a>
-						</div>
-						<?php
-				}
 
-				if ( !$_contributors )
-				{
-					?>
-<!--					<p class="post-date when">-->
-<!--						<img src="--><?php //echo $authorAvatar; ?><!--">-->
-<!---->
-<!--						--><?php //echo stripslashes($this->__('This entry was posted on %s<span class=\"by-author\"> by %s</span>.', $post->getPostDate(), $post->getAuthor()->getDisplayName())) ?>
-<!--					</p>-->
+
 				<?php
-				}
+
 
 
 

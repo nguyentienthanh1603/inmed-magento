@@ -13,17 +13,69 @@
 		<div class="panel-body">
 
 			<?php foreach($posts as $post): ?>
-				<h2 class="float-left imlistening-heading">
-					<a href="<?php echo $post->getPermalink() ?>" title="<?php echo $this->htmlEscape($post->getPostTitle()) ?>">
-						<?php echo $this->htmlEscape($post->getPostTitle()) ?>
-					</a>
-					<small>By <a href="<?php echo Mage::getBaseUrl().'im-listening/contributors/'. $post->getAuthor()->getUserNicename(); ?>"><?php echo $post->getAuthor()->getDisplayName(); ?></a></small>
-					<span class="date"><?php echo $post->getPostDate(); ?></span>
-				</h2>
+				<div class="wordpress-header">
+					<div class="date-wrapper">
+				<span class="date-day">
+					<?php
+					echo date('d', strtotime($post->getPostDateRaw()));
+					?>
+				</span>
+				<span class="date-month-year">
+					<?php
+					echo date('M Y', strtotime($post->getPostDateRaw()));
+					?>
+				</span>
+					</div>
+					<div class="title-wrapper">
+
+						<a class="h2-wordpress" href="<?php echo $_url ?>" title="<?php echo $this->escapeHtml($post->getPostTitle()) ?>">
+							<h2><?php echo $this->escapeHtml($post->getPostTitle()) ?></h2>
+						</a>
+
+
+						<div class="wordpress-contributor-wrapper">
+
+
+							<?php //echo $post->getAuthor()->getContributorImage(); ?>
+
+							<div class="contributor-wrapper">
+
+								<?php
+								if ( $post->getAuthor()->getContributorImage() != '' )
+								{
+
+									?>
+									<img src="<?php echo $post->getAuthor()->getContributorImage(); ?>">
+								<?php
+								}
+								?>
+								<a href="<?php echo Mage::getBaseUrl().'im-listening/contributors/'. $post->getAuthor()->getUserNicename(); ?>">
+									<?php echo $post->getAuthor()->getDisplayName(); ?>
+									<span>View My Articles</span>
+								</a>
+
+							</div>
+
+
+
+						</div>
+
+
+
+
+						<div class="addthis_sharing_toolbox"></div>
+
+						<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53a3aa090df647cf"></script>
+
+					</div>
+
+
+
+				</div>
 
 				<?php if ($featuredImage = $post->getFeaturedImage()): ?>
 
-					<img  class="pull-left" class="media-object" src="<?php echo $featuredImage->getAvailableImage() ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"/>
+					<img  class="media-object featured-image-imlistening"  src="<?php echo $featuredImage->getAvailableImage() ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"/> <br />
 
 				<?php endif; ?>
 			<?php if ($post->hasMoreTag()): ?>
@@ -31,8 +83,7 @@
 			<?php else: ?>
 				<?php echo $post->getPostContent() ?>
 			<?php endif; ?>
-<p>&nbsp;</p>
-				<p>&nbsp;</p>
+
 			<?php endforeach; ?>
 
 		</div>

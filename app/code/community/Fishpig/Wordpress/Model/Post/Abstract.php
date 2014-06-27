@@ -175,6 +175,15 @@ abstract class Fishpig_Wordpress_Model_Post_Abstract extends Fishpig_Wordpress_M
 		
 		return Mage::helper('wordpress')->formatDate($date, $format);
 	}
+
+	public function getPostDateRaw()
+	{
+		if (($date = $this->getData('post_date_gmt')) === '0000-00-00 00:00:00' || $date === '') {
+			$date = now();
+		}
+
+		return $date;
+	}
 	
 	/**
 	 * Returns the post date formatted
