@@ -43,34 +43,21 @@
 								<?php
 								if ( $post->getAuthor()->getContributorImage() != '' )
 								{
-
 									?>
 									<img src="<?php echo $post->getAuthor()->getContributorImage(); ?>">
 								<?php
 								}
 								?>
-								<a href="<?php echo Mage::getBaseUrl().'im-listening/contributors/'. $post->getAuthor()->getUserNicename(); ?>">
+								<a href="<?php echo Mage::getBaseUrl().'im-listening/contributors/'. $post->getAuthor()->getUserNicename(); ?>/all">
 									<?php echo $post->getAuthor()->getDisplayName(); ?>
 									<span>View My Articles</span>
 								</a>
-
 							</div>
-
-
-
 						</div>
 
-
-
-
 						<div class="addthis_sharing_toolbox"></div>
-
 						<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53a3aa090df647cf"></script>
-
 					</div>
-
-
-
 				</div>
 
 				<?php if ($featuredImage = $post->getFeaturedImage()): ?>
