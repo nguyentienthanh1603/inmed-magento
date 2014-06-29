@@ -78,6 +78,7 @@
         <reference name="right">
             <!--<block type="catalog/product_gallery" name="catalog.product.qrcode"  before="-" template="catalog/product/widget/sidebar/qrcode.phtml"/>-->
             <block type="catalog/product_gallery" name="catalog.product.barcode" before="-"  template="catalog/product/widget/sidebar/barcode.phtml"/>
+            <block type="catalog/product_gallery" name="catalog.product.freefrom" before="-"  template="catalog/product/widget/sidebar/free_from.phtml"/>
             <block type="catalog/product_gallery" name="catalog.product.ingredients" before="-"  template="catalog/product/widget/sidebar/ingredients.phtml"/>
             <block type="catalog/product_gallery" name="catalog.product.dosage" before="-"  template="catalog/product/widget/sidebar/dosage.phtml"/>
 
