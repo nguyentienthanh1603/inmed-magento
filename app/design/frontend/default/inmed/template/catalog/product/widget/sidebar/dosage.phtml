@@ -44,7 +44,7 @@ $product = $this->getProduct();
 		if ( $product->getImageMeasurements() != 'no_selection' )
 		{
 		?>
-		<h3>Dosage Image</h3>
+		<h3>Dosage Size</h3>
 		<div class="product-side-image-holder">
 			<img src="<?php echo Mage::helper('catalog/image')->init($product, 'image_measurements')->resize(160); ?>">
 		</div>
