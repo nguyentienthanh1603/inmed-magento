@@ -78,19 +78,58 @@ $index = 0;
 ?>
 <?php if ($baseImageFile): ?>
     <div class="product-image product-image-zoom">
-        <a href="#product-media-modal" data-toggle="media" data-index="<?php echo $index++ ?>">
-            <img src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize($baseImageSize['x'], $baseImageSize['y']) ?>" alt="<?php echo $this->htmlEscape($this->getImageLabel()) ?>">
+        <a href="#product-media-modal" data-toggle="media" data-index="<?php echo $index++ ?>" class="product-image-big-link">
+            <img class="product-image-big" src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize($baseImageSize['x'], $baseImageSize['y']) ?>" alt="<?php echo $this->htmlEscape($this->getImageLabel()) ?>">
         </a>
     </div>
 <?php endif ?>
 
+
+<script>
+
+	var $j = jQuery.noConflict();
+
+	$j(document).ready(function(){
+		$j(".product-images-carousel").click( function() {
+
+			var id = $j(this).parent().attr('data-index');
+			$j('.product-image-big').attr('src', $j(this).attr('data-image') );
+			$j('.product-image-big-link').data('index', id );
+		});
+
+		$j(".product-image-big").click( function() {
+			var id = $j(this).parent().attr('data-index');
+
+			console.log('id = ' + id);
+
+			//remove active
+			$j('ol.carousel-indicators li').removeClass('active');
+
+			// active the correct image
+			$j('#productimage-slider'+id).addClass('active');
+		});
+	});
+
+
+</script>
+
 <?php if ($galleryImages): ?>
     <div class="more-views">
         <ul>
+			<li>
+				<a data-index="0">
+					<img class="product-images-carousel" src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize($galleryImageSize['x'], $galleryImageSize['y']) ?>"
+						 data-image="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize($baseImageSize['x'], $baseImageSize['y']) ?>"
+						 alt="<?php echo $this->htmlEscape($image->getLabel()) ?>">
+				</a>
+			</li>
             <?php foreach ($galleryImages as $image): ?>
                 <li>
-                    <a href="#product-media-modal" data-toggle="media" data-index="<?php echo $index++ ?>">
-                        <img src="<?php echo $this->helper('catalog/image')->init($product, 'image', $image->getFile())->resize($galleryImageSize['x'], $galleryImageSize['y']) ?>" alt="<?php echo $this->htmlEscape($image->getLabel()) ?>">
+<!--                    <a href="#product-media-modal" data-toggle="media" data-index="--><?php //echo $index++ ?><!--">-->
+						<a  data-index="<?php echo $index++ ?>">
+                        <img class="product-images-carousel" src="<?php echo $this->helper('catalog/image')->init($product, 'image', $image->getFile())->resize($galleryImageSize['x'], $galleryImageSize['y']) ?>"
+							 data-image="<?php echo $this->helper('catalog/image')->init($product, 'image', $image->getFile())->resize($baseImageSize['x'], $baseImageSize['y']) ?>"
+							 alt="<?php echo $this->htmlEscape($image->getLabel()) ?>">
                     </a>
                 </li>
             <?php endforeach ?>
@@ -110,11 +149,11 @@ $index = 0;
                         <ol class="carousel-indicators">
                             <?php $index = 0; ?>
                             <?php if ($baseImageFile): ?>
-                                <li data-target="#product-media-carousel" class="active" data-slide-to="<?php echo $index++ ?>"></li>
+                                <li data-target="#product-media-carousel" class="active" id="productimage-slider<?php echo $index ?>" data-slide-to="<?php echo $index++ ?>"></li>
                             <?php endif ?>
                             <?php $count = 0; ?>
                             <?php foreach ($galleryImages as $image): ?>
-                                <li data-target="#product-media-carousel" class="<?php if ($index == $count): ?>active<?php endif ?>" data-slide-to="<?php echo $index++; ?>"></li>
+                                <li data-target="#product-media-carousel" class="<?php if ($index == $count): ?>active<?php endif ?>"  id="productimage-slider<?php echo $index ?>" data-slide-to="<?php echo $index++; ?>"></li>
                                 <?php $count++; ?>
                             <?php endforeach ?>
                         </ol>
