@@ -431,4 +431,21 @@
 
     </wordpress_im-listening_interviews>
 
+
+    <wordpress_blog>
+        <reference name="root">
+            <action method="setTemplate"><template>page/3columns_blog.phtml</template></action>
+            <action method="setIsHandle"><applied>1</applied></action>
+        </reference>
+
+        <reference name="content">
+
+        </reference>
+
+        <block type="wordpress/post_associated_products" name="wp.associated.products.sidebar" template="wordpress/post/associated/products.phtml" before="-">
+            <action method="setTitle" translate="title" module="wordpress"><title><![CDATA[Related Products]]></title></action>
+        </block>
+
+    </wordpress_blog>
+
 </layout>
