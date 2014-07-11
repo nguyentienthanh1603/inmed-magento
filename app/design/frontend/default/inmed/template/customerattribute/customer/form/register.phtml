@@ -347,19 +347,23 @@
 		if ( $this->getRequest()->getParam('clinician') )
 		{
 			?>
-			$('.clinician_slide').slideUp();
-			$('.consumer_slide').slideDown();
+			$('.clinician_slide').show();
+			$('.consumer_slide').hide();
 			$("input[name=account_select][value='clinician']").attr('checked', 'checked');
 			<?php
 		}
 		else {
 			?>
-			$('.clinician_slide').slideUp();
-			$('.consumer_slide').slideDown();
+			$('.clinician_slide').hide();
+			$('.consumer_slide').show();
 			$("input[name=account_select][value='consumer']").attr('checked', 'checked');
 			<?php
 		}
  		?>
+
+		$('.collapse').css('display','none');
+
+		console.log('her');
 
 		// clinician lookup
 		$('#clinician_group_region_id, ' +
@@ -396,16 +400,20 @@
 			$(this).addClass('selected-membership');
 			$('.account_select_consumer').prop('checked',true);
 
-			$('.clinician_slide').slideUp();
-			$('.consumer_slide').slideDown();
+			$('.clinician_slide').hide();
+			$('.consumer_slide').show();
+
+			$('.collapse').css('display','none');
 		});
 		$('.membership_clinician').click( function() {
 			$('.selected-membership').removeClass('selected-membership');
 			$(this).addClass('selected-membership');
 			$('.account_select_clinician').prop('checked',true);
 
-			$('.clinician_slide').slideDown();
-			$('.consumer_slide').slideUp();
+			$('.clinician_slide').show();
+			$('.consumer_slide').hide();
+
+			$('.collapse').css('display','none');
 		});
 
 

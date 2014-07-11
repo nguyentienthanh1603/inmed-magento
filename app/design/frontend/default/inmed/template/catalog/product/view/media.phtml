@@ -90,7 +90,7 @@ $index = 0;
 	var $j = jQuery.noConflict();
 
 	$j(document).ready(function(){
-		$j(".product-images-carousel").click( function() {
+		$j(".product-images-carousel").hover( function() {
 
 			var id = $j(this).parent().attr('data-index');
 			$j('.product-image-big').attr('src', $j(this).attr('data-image') );

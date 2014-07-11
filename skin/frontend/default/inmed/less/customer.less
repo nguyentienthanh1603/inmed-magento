@@ -593,26 +593,29 @@ table.address-table {
   }
   .account_type {
     height: 180px;
+
     .membership_consumer,
     .membership_clinician {
       .radio-wrapper { display: none}
+      padding: 9px 7px 5px;
       width: 45%;
       height: 150px;
-      border: 1px solid @gray2;
+      border: 3px solid @gray2;
       float: left;
       margin-left: 3%;
       background-color: @white;
       .round(1px);
 
       &:hover {
-        border: 1px solid @blueLight;
+        border: 3px solid @blueLight;
         background-color: @gray0;
+        cursor: pointer;
       }
       &.selected-membership {
         background-image: url('../../images/tick.png');
         background-repeat: no-repeat;
-        background-position: 97% 5px;
-        border: 1px solid @blue;
+        background-position: 99% 5px;
+        border: 3px solid @greenDark;
         background-color: @gray0;
       }
     }
