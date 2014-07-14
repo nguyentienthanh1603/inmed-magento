@@ -29,6 +29,51 @@
 <?php
 // if account on hold, show message here
 $customer = Mage::getSingleton('customer/session')->getCustomer();
+
+
+//-------------------------------------------------------
+//------------ Customer details complete? ---------------------
+//-------------------------------------------------------
+$completeDetails = true;
+
+if ( $customer->group_id == 4 ) // clinician
+{
+
+	if ( !$customer->clinician_name ||
+		!$customer->clinician_specialities ||
+		!$customer->clinician_school_graduated ||
+		!$customer->clinician_school_year ||
+		!$customer->clinician_rego_number ||
+		!$customer->clinician_profile )
+	{
+		$completeDetails = false;
+	}
+
+}
+elseif ( $customer->group_id == 1 )
+{
+	if ( !$customer->consumer_interest ||
+		!$customer->consumer_language  )
+	{
+		$completeDetails = false;
+	}
+}
+
+if ( !$completeDetails )
+{
+	?>
+	<p class="alert alert-warning" style="text-align: center"><b>Your account details are not 100% complete.</b><br />
+		Please complete these details via the <a href="<?php echo Mage::getBaseUrl(); ?>customer/account/edit">Account Information Page</a>.
+	</p>
+	<?php
+}
+
+//-------------------------------------------------------
+//------------ End complete ---------------------
+//-------------------------------------------------------
+
+
+
 // account hold status
 $hold = $customer->account_on_hold ;
 if ( $hold )

@@ -43,17 +43,21 @@
         <?php echo $this->getChildHtml('global_notices') ?>
 
 
-		<div class="layout layout-3-cols">
-			<aside role="complementary">
-				<?php echo $this->getChildHtml('left') ?>
-			</aside>
-			<div role="main">
+		<div class="layout blog">
+			<div class="col-md-7">
 				<?php echo $this->getChildHtml('global_messages') ?>
 				<?php echo $this->getChildHtml('content') ?>
 			</div>
-			<aside role="complementary">
+
+			<div  class="col-md-3">
+				<?php echo $this->getChildHtml('left') ?>
+				this is the first column (292px)
+			</div>
+
+			<div  class="col-md-2">
 				<?php echo $this->getChildHtml('right') ?>
-			</aside>
+				this is the 2nd column (and a touch smaller - 195px)
+			</div>
 		</div>
     </div>
 
