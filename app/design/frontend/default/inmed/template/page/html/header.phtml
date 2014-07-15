@@ -34,17 +34,74 @@ $customer = Mage::getSingleton('customer/session');
 <div class="head_info">
 	<div class="container">
 		<div class="first">
-			Welcome to <?php echo Mage::app()->getStore()->getName(); ?>:
-			&nbsp;<a href="mailto:<?php echo Mage::getStoreConfig('trans_email/ident_general/email'); ?>">
+			<a href="mailto:<?php echo Mage::getStoreConfig('trans_email/ident_general/email'); ?>">
 				<i class="fa fa-envelope-o"></i>
 				<?php echo Mage::getStoreConfig('trans_email/ident_general/email'); ?>
-			</a><span class="orholder">&nbsp;or&nbsp;</span>
+			</a><span class="orholder">&nbsp;&nbsp;</span>
 			<i class="fa fa-phone"></i>
 			<?php echo Mage::getStoreConfig('general/store_information/phone'); ?>
+
+			<span class="orholder">&nbsp;&nbsp;</span>
+
+				<?php
+				if ( Mage::getModel('core/variable')->loadByCode('twitter_url')->getValue('plain') != '')
+				{
+					?>
+					<a href="<?php echo Mage::getModel('core/variable')->loadByCode('twitter_url')->getValue('plain');?>" class="social-icon-header">
+						<i class="fa fa-twitter"></i>
+					</a>
+				<?php
+				}
+
+				if ( Mage::getModel('core/variable')->loadByCode('facebook_url')->getValue('plain') != '')
+				{
+					?>
+					<a href="<?php echo Mage::getModel('core/variable')->loadByCode('facebook_url')->getValue('plain');?>" target="blank" class="social-icon-header">
+						<i class="fa fa-facebook"></i>
+					</a>
+				<?php
+				}
+
+				if ( Mage::getModel('core/variable')->loadByCode('linkedin_url')->getValue('plain') != '')
+				{
+					?>
+					<a href="<?php echo Mage::getModel('core/variable')->loadByCode('linkedin_url')->getValue('plain');?>" target="blank" class="social-icon-header">
+						<i class="fa fa-linkedin"></i>
+					</a>
+				<?php
+				}
+
+				if ( Mage::getModel('core/variable')->loadByCode('pinterest_url')->getValue('plain') != '')
+				{
+					?>
+					<a href="<?php echo Mage::getModel('core/variable')->loadByCode('pinterest_url')->getValue('plain');?>" target="blank" class="social-icon-header">
+						<i class="fa fa-pinterest"></i>
+					</a>
+				<?php
+				}
+				if ( Mage::getModel('core/variable')->loadByCode('youtube_url')->getValue('plain') != '')
+				{
+					?>
+					<a href="<?php echo Mage::getModel('core/variable')->loadByCode('youtube_url')->getValue('plain');?>" target="blank" class="social-icon-header">
+						<i class="fa fa-youtube"></i>
+					</a>
+				<?php
+				}
+				if ( Mage::getModel('core/variable')->loadByCode('vimeo_url')->getValue('plain') != '')
+				{
+					?>
+					<a href="<?php echo Mage::getModel('core/variable')->loadByCode('vimeo_url')->getValue('plain');?>" target="blank" class="social-icon-header">
+						<i class="fa fa-vimeo-square"></i>
+					</a>
+				<?php
+				}
+				?>
+
 
 		</div>
 
 		<div class="second">
+
 
 			<?php
 			if ( Mage::getSingleton('customer/session')->isLoggedIn() )

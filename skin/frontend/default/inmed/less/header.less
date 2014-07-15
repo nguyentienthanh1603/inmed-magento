@@ -14,6 +14,7 @@
   .first {
     display: inline-block;
     color: @gray3;
+    height: 38px;
     a {
       color: @gray3;
       &:hover {
@@ -21,6 +22,38 @@
         color: @gray5;
       }
     }
+
+    .social_header {
+      float: right;
+      width: 100px;
+//      display: inline-block;
+      max-height: 38px;
+      overflow: hidden;
+
+      .hidden-xs;
+      .hidden-sm;
+//      .hidden-md;
+
+
+
+    }
+
+    a {
+      &.social-icon-header {
+        padding: 0 3px;
+        font-size: 16px;
+        width: 20px;
+        text-align: center;
+        display: inline-block;
+        color: @gray3;
+
+        &:hover {
+          color: @black;
+        }
+      }
+    }
+
+
     @media (min-width: @screen-sm) {
       & {
         .make-md-column(3);
@@ -28,7 +61,8 @@
         font-size: 13px;
 
       }
-      a, .orholder { display: none }
+      a { display: none }
+      .social-icon-header { display: block }
     }
     @media (min-width: @screen-md) {
       & {
@@ -150,6 +184,8 @@
         }
       }
     }
+
+
 
     @media (min-width: @screen-sm) {
       & {
