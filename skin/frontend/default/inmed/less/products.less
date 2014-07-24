@@ -719,7 +719,7 @@
     padding: 10px 0 20px;
 
     &:hover {
-      background-color: @gray0;
+//      background-color: @gray0;
     }
 
 
@@ -804,10 +804,12 @@
       text-transform: uppercase;
       font-family: @fontPTSans;
       .round(3px);
-      background-color: @blueLight;
-//      border: 1px solid @gray2;
+//      background-color: @blueLight;
+      border: 1px solid @blueLight;
       padding: 3px 0px 2px 0px;
       z-index: 100;
+      width: 110px;
+
 
 
       span {
@@ -823,21 +825,25 @@
           line-height: 20px;
         }
       }
-      div {
+      div.ingredient-links {
         display: none;
         background-color: @white;
 
         ul {
-          padding: 3px 0 0;
+          margin-top: 5px;
+          padding: 0px 0 0;
           margin-bottom: 0;
           li {
             height: 26px;
-            padding-left: 5px;
+            text-align: left;
+            padding: 0 5px;
             border-top: 1px dashed @gray1;
             line-height: 26px;
             text-transform: capitalize;
             a {
               color: @gray4;
+              text-align: left;
+              float: none;
             }
             &:hover {
               background-color: @gray0;
